@@ -13,18 +13,21 @@
 * ⚙️ Ml_Model - Machine Learning functionality and model.
   
 * ⚙️ Utils - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. 
-    * 📜 AL_utility: \
+    * 📜 AL_utility.py \
   AL_Helper (Responsible for Running Active Learning) 
 
-    * 📜 CFD_utility: \
+    * 📜 CFD_utility.py \
   CFD_Helper (Responsible for Creating New zCFD Sims) 
 
-    * 📜 CSV_Utility: \
+    * 📜 CSV_Utility.py \
   CSV_Helper (Responsible for Extracting Data from Sims and Formatting) \
   CSV_Data_Vis (Responsible for Generating Interactive Data Representations) 
 
-    * 📜 GP_utility: \
+    * 📜 GP_utility.py \
   Turbine_Helper (Responsible for Parameter Assignment and Fingerprint Generation) \
   GP_Helper (Responsible for Training and Predicting using the GP model)
+
+    * 📜 utilities.py \
+  Complete utility classes, datalogging, messages, meta.
 
 * ⚙️ zCFD_Import - Historic functionality and initial data merge.
