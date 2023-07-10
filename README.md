@@ -1,5 +1,6 @@
 # Descriptor-Based Surrogate Model of Wind Speeds in Offshore Wind Farms
 
+![alt text](https://w7.pngwing.com/pngs/683/243/png-transparent-wind-farm-energy-windmill-wind-power-energy-logo-industry-farm.png)
 
 🚀turbine_files are the CFD outputs in .csv file format for 2 and 3 turbine simulations with 10 m/s. 
 
