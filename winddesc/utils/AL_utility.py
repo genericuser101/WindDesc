@@ -10,24 +10,23 @@ import CFD_utility
 import GP_utility
 import CSV_utility 
 
-#Some formalities before we get to the best part
-GP = GP_utility.GP_Helper()
-TU = GP_utility.Turbine_Helper()
-CFD = CFD_utility.CFD_Helper()
-CSV = CSV_utility.CSV_Helper()
 
 class AL_Helper():
     def __init__(self) -> None:
-        pass
+        #Some formalities before we get to the best part
+        self.GP = GP_utility.GP_Helper()
+        self.TU = GP_utility.Turbine_Helper()
+        self.CFD = CFD_utility.CFD_Helper()
+        self.CSV = CSV_utility.CSV_Helper()
     
     #start_simnumber will be replaced with a funcation which looks at the last 
     def rock_and_roll(self, num_iter, filename, num_turb, tolerance, start_simnumber):  
         
         #1 Generate coords + Train Model
-        turbines, neigh = CFD.generate_locations()
-        trained_gp_model = GP.train_model(filename)
+        turbines, neigh = self.CFD.generate_locations()
+        trained_gp_model = self.GP.train_model(filename)
 
-        refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
+        refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
         
         #2 Check if model is happy
         if any(refstdev) > tolerance:
