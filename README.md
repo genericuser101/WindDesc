@@ -8,7 +8,7 @@
 ### Wind Desc:
 * ⚙️ Cutoff - Contains the files for our cutoffs.
   
-* ⚙️ Fingerprint_Calc - Contains the three descriptor model used to generate the fingerprints for simulations.
+* ⚙️ Fingerprint_Calc - Contains the three descriptor model used to generate the fingerprints and neightbour lists for simulations.
   
 * ⚙️ ML_Model - Machine Learning functionality and model.
 
