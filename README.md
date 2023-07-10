@@ -12,7 +12,7 @@
   
 * ⚙️ Ml_Model - Machine Learning functionality and model.
   
-* ⚙️ Utils - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. 
+* ⚙️ Utils - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. \
     📜 AL_utility: \
   AL_Helper (Responsible for Running Active Learning) \
     📜 CFD_utility: \
