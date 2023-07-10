@@ -120,7 +120,7 @@ class GP_Helper():
         m.optimize(messages=True,max_f_eval = 1000)
         return m 
 
-    def predict(self, trained_GP_model, pos_array, num_turbs_predict):
+    def predict_model(self, trained_GP_model, pos_array, num_turbs_predict):
 
         # DECLARE TURBINE TYPE
         turb = [self.turbine_utility.symbol]
