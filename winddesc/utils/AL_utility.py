@@ -19,8 +19,9 @@ CSV = CSV_utility.CSV_Helper()
 class AL_Helper():
     def __init__(self) -> None:
         pass
-
-    def rock_and_roll(self, num_iter, filename, num_turb, tolerance):  
+    
+    #start_simnumber will be replaced with a funcation which looks at the last 
+    def rock_and_roll(self, num_iter, filename, num_turb, tolerance, start_simnumber):  
         
         #1 Generate coords + Train Model
         turbines, neigh = CFD.generate_locations()
