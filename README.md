@@ -14,10 +14,10 @@
   
 * ⚙️ Utils - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. 
     * 📜 AL_utility: \
-  AL_Helper (Responsible for Running Active Learning) \
+  AL_Helper (Responsible for Running Active Learning) 
 
     * 📜 CFD_utility: \
-  CFD_Helper (Responsible for Creating New zCFD Sims) \
+  CFD_Helper (Responsible for Creating New zCFD Sims) 
 
     * 📜 CSV_Utility: \
   CSV_Helper (Responsible for Extracting Data from Sims and Formatting) \
