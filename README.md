@@ -13,6 +13,9 @@
 * ⚙️ ML_Model - Machine Learning functionality and model.
 
 * ⚙️ GP_Model - Gaussian Process functionality and active learning loops.
+    * 📖 Windfarm_Active_Learning.ipynb    
+    * 📖 Windfarm_Data_Vis.ipynb
+    * 📖 Windfarm_New_Sim.ipynb
   
 * ⚙️ Utils - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. 
     * 📜 AL_utility.py \
