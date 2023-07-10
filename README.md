@@ -1,6 +1,8 @@
 # Descriptor-Based Surrogate Model of Wind Speeds in Offshore Wind Farms
 
 
+
+
 🚀turbine_files are the CFD outputs in .csv file format for 2 and 3 turbine simulations with 10 m/s. 
 
 🚀cutoffs.py provides cutoff function for lateral and radial buffer zones for smoother transition.
