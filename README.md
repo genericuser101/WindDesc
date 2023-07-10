@@ -30,7 +30,7 @@
 
     * 📜 GP_utility.py \
   Turbine_Helper (Responsible for Parameter Assignment and Fingerprint Generation) \
-  GP_Helper (Responsible for Training and Predicting using the GP model)
+  GP_Helper (Responsible for Training and Predicting using the GP model) \
   ❗ In the .predict_model() function the .predict() function calls from a GPy object, not model object ❗
 
     * 📜 utilities.py \
