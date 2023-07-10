@@ -3,9 +3,9 @@
 
 ## Files:
 ### Data:
-🖥️ Contains all the CSV files which are used to train the GP and ML models.\
+🖥️ Contains all the CSV files which are used to train the GP and ML models.
 
-###Wind Desc:
+### Wind Desc:
 ⚙️ Cutoff - Contains the files for our cutoffs. \
 ⚙️ Fingerprint_Calc - Contains the three descriptor model used to generate the fingerprints for simulations. \
 :gear: Ml_Model - Machine Learning functionality and model. \
