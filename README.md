@@ -10,7 +10,9 @@
   
 * ⚙️ Fingerprint_Calc - Contains the three descriptor model used to generate the fingerprints for simulations.
   
-* ⚙️ Ml_Model - Machine Learning functionality and model.
+* ⚙️ ML_Model - Machine Learning functionality and model.
+
+* ⚙️ GP_Model - Gaussian Process functionality and active learning loops.
   
 * ⚙️ Utils - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. 
     * 📜 AL_utility.py \
