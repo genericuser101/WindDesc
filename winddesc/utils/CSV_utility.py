@@ -27,8 +27,7 @@ class CSV_Helper():
     #Written by Dr. Brommer and Jingjing
     def extract_turbine_data(self, filename, num_turbs, windspeed, sim_num):
         
-            
-        
+        #sim_num = "0005"
         simulation_directory="simulation/"+sim_num
         coordinate_file=simulation_directory+"/xy_turbine.txt"
         
@@ -48,12 +47,15 @@ class CSV_Helper():
                     cfd_data[i]=df[uref].iloc[-1]
                 print(cfd_data)
 
+        #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬NEW NAMING FORMAT¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
         simname=sim_num+"_"+str(windspeed)+"_"+str(num_turbs)
+        #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+
         dataset=pd.DataFrame()
         for i in range(num_turbs):
             turb_data=pd.DataFrame(
-                [[pos[1].iloc[i]+2000,pos[2].iloc[i],cfd_data[i],num_turbs, simname,i]], 
-                columns=["X_coord", "Y_coord", "Ref_wind", "Num_tot_turb", "ID","Turb_num"])
+                [[pos[1].iloc[i]+2000, pos[2].iloc[i], cfd_data[i], num_turbs, simname,   i]], 
+                columns=["X_coord",    "Y_coord",     "Ref_wind", "Num_tot_turb", "ID", "Turb_num"])
         #        [[pos[1].iloc[i]+2000,pos[2].iloc[i],cfd_data[i],windspeed,i,numturb, simname]], 
         #        columns=["x_coord", "y_coord", "ref_wind_speed","wind_speed" , "turb_num","num_tot_turb", "ID"])
             dataset = pd.concat([dataset, turb_data])
@@ -61,7 +63,7 @@ class CSV_Helper():
         dataset
 
         turbine_csv=pd.read_csv(filename,index_col=False)
-        turbine_csv=turbine_csv.drop(turbine_csv.columns[[0]],axis=1)
+        #turbine_csv=turbine_csv.drop(turbine_csv.columns[[0]],axis=1)
         turbine_csv = pd.concat([turbine_csv,dataset])
         turbine_csv = turbine_csv.reset_index(drop=True)
 

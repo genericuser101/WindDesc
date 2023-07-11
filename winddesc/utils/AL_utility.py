@@ -3,6 +3,7 @@
 #It's completely elegant, it's bafflingly beautiful... - Justin Hummer @ Iron Man 2
 
 #Call me Thanos the way I collect these utility files.
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -20,9 +21,18 @@ class AL_Helper():
         self.CSV = CSV_utility.CSV_Helper()
     
     #start_simnumber will be replaced with a funcation which looks at the last 
-    def rock_and_roll(self, num_iter, filename, num_turb, tolerance, start_simnumber, method):  
+    def rock_and_roll(self, num_iter, filename, num_turb, tolerance, method):  
         
-        #insert code for the last file value in the sim dir.
+        folder_path = "home/eng/esugxk/storage/WindDesc/simulation"
+        subfolders = os.listdir(folder_path)
+
+        # Sort the subfolders in ascending order
+        sorted_subfolders = sorted(subfolders, key=lambda x: int(x) if x.isdigit() else -1)
+
+        # Get the last folder
+        last_folder = sorted_subfolders[-1] if sorted_subfolders else None
+
+        print("Value of the last folder:", last_folder)
         
         for i in range(num_iter):
 
@@ -33,7 +43,7 @@ class AL_Helper():
 
             if any(refstdev) > tolerance:
 
-                #Training Fork
+                #Training Fork for Methodologies
                 try:
                     if method == "simple":
                         pass
@@ -41,14 +51,16 @@ class AL_Helper():
                         pass 
                     elif method == "autoencoder":
                         pass
-
                     #¬¬¬¬¬¬¬¬ADD MORE TECHNIQUES¬¬¬¬¬¬¬¬¬¬¬¬¬
                 except ValueError:
                     print("Training method not recognised. Check github for currently supported.")
                 
-                self.
-
-
+                #¬¬¬¬¬¬¬¬¬¬¬¬¬¬DO SIM NUMBER ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                self.CFD.simulate(turbines, sim_number)
+                
+                #¬¬¬¬¬¬¬¬¬¬WE NEED TO WAIT FOR THE JOB TO BE DONE¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                #Every 5 minutes check the existance of a file. 
+                
 
 
                 #5 Extract newly added data and throw in the desired data file
