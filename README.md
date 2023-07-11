@@ -38,7 +38,10 @@
     * 📜 three_desc_model.py \
   Contains the three descriptor model used for predicting windspeeds.
 
+### Active Learning: 
+The active learning algorithm currently supports the following
+
 ### FAQ:
 Q: I am parsing a the filename but, its returning a directory ValueError? \
-A: If you aren't using the same architecture as WindDesc please pass the full path or at least the path from your code dir.
+A: If you aren't using the same architecture as WindDesc please pass the full path or at least the path from your code dir. Once the module is fully packaged the config file will be responsible for all this.
 
