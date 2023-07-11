@@ -6,10 +6,6 @@
 🖥️ Contains all the CSV files which are used to train the GP and ML models.
 
 ### Wind Desc:
-* ⚙️ Cutoff - Contains the files for our cutoffs.
-  
-* ⚙️ Fingerprint_Calc - Contains the three descriptor model used to generate the fingerprints and neightbour lists for simulations.
-  
 * ⚙️ ML_Model - Machine Learning functionality and model.
 
 * ⚙️ GP_Model - Gaussian Process functionality and active learning loops.
@@ -35,5 +31,11 @@
 
     * 📜 utilities.py \
   Complete utility classes, datalogging, messages, meta.
+
+    * 📜 cutoffs.py \
+  Mathematical cutoffs and further functionality.
+
+    * 📜 three_desc_model.py \
+  Contains the three descriptor model used for predicting windspeeds.
 
 * ⚙️ zCFD_Import - Historic functionality and initial data merge.
