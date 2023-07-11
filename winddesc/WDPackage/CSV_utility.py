@@ -27,7 +27,7 @@ class CSV_Helper():
     #Written by Dr. Brommer and Jingjing
     def extract_turbine_data(self, filename, num_turbs, windspeed, sim_num):
         
-        #sim_num = "0005"
+        #Check out how to parse the sim_num = "0005" stef
         simulation_directory="simulation/"+sim_num
         coordinate_file=simulation_directory+"/xy_turbine.txt"
         
@@ -71,8 +71,8 @@ class CSV_Helper():
 
         turbine_csv.to_csv(filename,index=True)
 
-    #Simple bubble sort for tuple arrays.
     def sort_array_ascendX(self, arr):
+        #Simple bubble sort for tuple arrays.
         #I solemly swear I wrote this code.
         array = arr
         n = len(array)
@@ -90,9 +90,10 @@ class CSV_Helper():
         #Return sorted array.
         return array
 
-    #Please update this function if the format changes and change the value in the comment below.
-    #Current Format Version = 2
     def old_format_to_new(self, old_filename, new_filename):
+        #Please update this function if the format changes and change the value in the comment below.
+        #Current Format Version = 2
+
         input_file = old_filename
         output_file = new_filename
 
