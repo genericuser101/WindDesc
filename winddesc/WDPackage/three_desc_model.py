@@ -1,8 +1,8 @@
 import numpy as np
 from copy import deepcopy
 
-from utils.utilities import Data, Logger, importer
-from cutoff.cutoffs import Polynomial, Polynomial_2, dict2cutoff
+from utilities import Data, Logger, importer
+from cutoffs import Polynomial, Polynomial_2, dict2cutoff
 
 class Gaussian(object):
     

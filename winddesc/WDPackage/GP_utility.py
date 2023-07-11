@@ -5,12 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import GPy
 from IPython.display import display
-from cutoff.cutoffs import Polynomial
+from cutoffs import Polynomial
 GPy.plotting.change_plotting_library('matplotlib')
 
 #We need a three discriptor model here as well for predicting fingerprints.
 #This makes the three descriptors we need to for the GP model.
-import fingerprint_calc.three_desc_model as exponential_new
+import three_desc_model as exponential_new
 
 #This class does the functionality of a turbine.
 class Turbine_Helper():

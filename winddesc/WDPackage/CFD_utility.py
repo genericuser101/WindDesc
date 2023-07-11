@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 from itertools import combinations
 
 #Required Files
-from cutoff.cutoffs import Polynomial
+from cutoffs import Polynomial
 import GP_utility as GP
-import fingerprint_calc.three_desc_model as exponential_new
+import three_desc_model as exponential_new
 
 
 #This class contains the functionality required for creating and simulating zCFD.
