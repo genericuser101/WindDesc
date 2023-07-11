@@ -12,7 +12,6 @@ GPy.plotting.change_plotting_library('matplotlib')
 #This makes the three descriptors we need to for the GP model.
 import three_desc_model as exponential_new
 
-#This class does the functionality of a turbine.
 class Turbine_Helper():
     def __init__(self):
         self.symbol = "Siemens"
@@ -48,7 +47,6 @@ class Turbine_Helper():
         fingerprints=np.array(self.finpr.calculate(turb*num_turbs_predict,pos_array,neigh,self.symbol))
         return fingerprints
 
-#This class trains and uses the GP model to make predictions.
 class GP_Helper():
     def __init__(self) -> None:
         self.turbine_utility = Turbine_Helper()

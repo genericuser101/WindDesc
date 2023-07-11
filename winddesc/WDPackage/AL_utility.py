@@ -29,8 +29,10 @@ class AL_Helper():
 
         # Get the last folder
         local_sim_num = sorted_subfolders[-1] if sorted_subfolders else None
+
+        return local_sim_num
     
-    def rock_and_roll(self, num_iter, filename, num_turb, tolerance, method):  
+    def rock_and_roll(self, num_iter, filename, num_turb, tolerance, method, windspeed):  
 
         local_sim_num = self.last_local_sim("../../simulation")
         local_sim_num += 1
@@ -42,10 +44,10 @@ class AL_Helper():
             trained_gp_model = self.GP.train_model(filename)
             refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
 
-            #Check the tolerance
+            #Check if there are any outliers in the tolerancing.
             if any(refstdev) > tolerance:
 
-                #Training fork for methodologies
+                #Training fork for the methodologies.
                 try:
                     if method == "simple":
                         pass
@@ -54,22 +56,25 @@ class AL_Helper():
                     elif method == "autoencoder":
                         pass
                     #¬¬¬¬¬¬¬¬ADD MORE TECHNIQUES¬¬¬¬¬¬¬¬¬¬¬¬¬
-                    
+
                 except ValueError:
                     print("Training method not recognised. Check github for currently supported.")
                 
-                #New simulation is run on an update sim_num
+                #New simulation is run on the fed-forward coordinates.
                 self.CFD.simulate(turbines, local_sim_num)
-                local_sim_num += 1
                 
                 #¬¬¬¬¬¬¬¬¬¬WE NEED TO WAIT FOR THE JOB TO BE DONE¬¬¬¬¬¬¬¬¬¬¬¬¬¬
                 #Every 5 minutes check the existance of a file. 
                 
 
-                #5 Extract newly added data and throw in the desired data file
-                
+                #Extract newly added data and throw in the desired data file.
+                self.CSV.extract_turbine_data("../../data", num_turb, windspeed, local_sim_num)
+                local_sim_num += 1
+
                 #6 Retraing the model and see if happy now
-                
+                trained_gp_model = self.GP.train_model(filename)
+                refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
+
 
                 pass
             else:

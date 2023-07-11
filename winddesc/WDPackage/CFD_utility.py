@@ -12,7 +12,6 @@ import GP_utility as GP
 import three_desc_model as exponential_new
 
 
-#This class contains the functionality required for creating and simulating zCFD.
 class CFD_Helper():
 
 

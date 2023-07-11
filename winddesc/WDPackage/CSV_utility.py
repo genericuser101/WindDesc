@@ -19,7 +19,6 @@ import GP_utility
 from IPython.display import display
 GPy.plotting.change_plotting_library('matplotlib')
 
-#This class has the main functionality required for CSV file manipulations.
 class CSV_Helper():
     def __init__(self) -> None:
         pass
@@ -108,7 +107,6 @@ class CSV_Helper():
         print(f"Modified CSV file saved as '{output_file}'.")
 
 
-#This class helps with the visualisation of the 
 class CSV_Data_Vis():
     def __init__(self, filename) -> None:
         self.filename = filename
