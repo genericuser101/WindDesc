@@ -23,16 +23,14 @@ class AL_Helper():
     #start_simnumber will be replaced with a funcation which looks at the last 
     def rock_and_roll(self, num_iter, filename, num_turb, tolerance, method):  
         
-        folder_path = "home/eng/esugxk/storage/WindDesc/simulation"
+        folder_path = "../../simulation"
         subfolders = os.listdir(folder_path)
 
         # Sort the subfolders in ascending order
         sorted_subfolders = sorted(subfolders, key=lambda x: int(x) if x.isdigit() else -1)
 
         # Get the last folder
-        last_folder = sorted_subfolders[-1] if sorted_subfolders else None
-
-        print("Value of the last folder:", last_folder)
+        local_sim_num = sorted_subfolders[-1] if sorted_subfolders else None
         
         for i in range(num_iter):
 
