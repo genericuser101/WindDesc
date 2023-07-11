@@ -20,26 +20,43 @@ class AL_Helper():
         self.CSV = CSV_utility.CSV_Helper()
     
     #start_simnumber will be replaced with a funcation which looks at the last 
-    def rock_and_roll(self, num_iter, filename, num_turb, tolerance, start_simnumber):  
+    def rock_and_roll(self, num_iter, filename, num_turb, tolerance, start_simnumber, method):  
         
-        #1 Generate coords + Train Model
-        turbines, neigh = self.CFD.generate_locations()
-        trained_gp_model = self.GP.train_model(filename)
-
-        refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
+        #insert code for the last file value in the sim dir.
         
-        #2 Check if model is happy
-        if any(refstdev) > tolerance:
-            #3 If happy cool, if sad run new simulation AKA ACTIVELY LEARN
+        for i in range(num_iter):
 
-            #4 Generate zCFD and run it 
+            #Generate coords + Train Model
+            turbines, neigh = self.CFD.generate_locations()
+            trained_gp_model = self.GP.train_model(filename)
+            refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
 
-            #5 Extract newly added data and throw in the desired data file
-            
-            #6 Retraing the model and see if happy now
-            
+            if any(refstdev) > tolerance:
 
-            pass
-        else:
-            #Go to step 1
-            pass 
+                #Training Fork
+                try:
+                    if method == "simple":
+                        pass
+                    elif method == "bayesian":
+                        pass 
+                    elif method == "autoencoder":
+                        pass
+
+                    #¬¬¬¬¬¬¬¬ADD MORE TECHNIQUES¬¬¬¬¬¬¬¬¬¬¬¬¬
+                except ValueError:
+                    print("Training method not recognised. Check github for currently supported.")
+                
+                self.C 
+
+
+
+
+                #5 Extract newly added data and throw in the desired data file
+                
+                #6 Retraing the model and see if happy now
+                
+
+                pass
+            else:
+                print("The model is happy, finding a new configuration.")
+                pass 

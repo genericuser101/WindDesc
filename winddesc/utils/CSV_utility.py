@@ -26,7 +26,9 @@ class CSV_Helper():
     
     #Written by Dr. Brommer and Jingjing
     def extract_turbine_data(self, filename, num_turbs, windspeed, sim_num):
-
+        
+            
+        
         simulation_directory="simulation/"+sim_num
         coordinate_file=simulation_directory+"/xy_turbine.txt"
         
