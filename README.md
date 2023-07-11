@@ -13,7 +13,7 @@
     * 📖 Windfarm_Data_Vis.ipynb
     * 📖 Windfarm_New_Sim.ipynb
   
-* ⚙️ Utils - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. 
+* ⚙️ WDPackage - Utility scripts for CSV handling, Active Learning, GP functionality and Data visualisation. 
     * 📜 AL_utility.py \
   AL_Helper (Responsible for Running Active Learning) 
 
@@ -38,4 +38,7 @@
     * 📜 three_desc_model.py \
   Contains the three descriptor model used for predicting windspeeds.
 
-* ⚙️ zCFD_Import - Historic functionality and initial data merge.
+### FAQ:
+Q: I am parsing a the filename but, its returning a directory ValueError? \
+A: If you aren't using the same architecture as WindDesc please pass the full path or at least the path from your code dir.
+
