@@ -46,7 +46,7 @@ class AL_Helper():
                 except ValueError:
                     print("Training method not recognised. Check github for currently supported.")
                 
-                self.C 
+                self.
 
 
 
