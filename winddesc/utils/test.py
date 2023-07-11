@@ -7,7 +7,7 @@ import CFD_utility
 import GP_utility
 import CSV_utility 
 
-folder_path = "home/eng/esugxk/storage/WindDesc/simulation"
+folder_path = "home/eng/esugxk/storage/cfd_gp/simulation"
 subfolders = os.listdir(folder_path)
 
 # Sort the subfolders in ascending order
