@@ -45,7 +45,7 @@ The active learning algorithm currently supports the following
 Q: I am parsing a the filename but, its returning a directory ValueError? \
 A: If you aren't using the same architecture as WindDesc please pass the full path or at least the path from your code dir. Once the module is fully packaged the config file will be responsible for all this.
 
-### KNOWN ISSUES:
+### Known Issues for submitting issues please email stefan.zhikharev@warwick.ac.uk:
 0001 - All the pathing is hardcoded and stems from where the code is run, hence requires "../file" operators.
 0002 - The imports require a path change, as the strucutre is not yet packaged together.
 
