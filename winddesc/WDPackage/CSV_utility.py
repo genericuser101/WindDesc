@@ -95,7 +95,7 @@ class CSV_Helper():
                         sim_count += 1 
                 line_count += 1
 
-            return sim_count
+        return sim_count
 
     def sort_array_ascendX(self, arr):
         #Simple bubble sort for tuple arrays.
