@@ -91,7 +91,7 @@ class CSV_Helper():
 
             for row in csv_reader:
                 if line_count > 0:
-                    if row[3] == num_turbs:
+                    if int(row[3]) == num_turbs:
                         sim_count += 1 
                 line_count += 1
 
