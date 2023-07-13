@@ -48,9 +48,8 @@ class CSV_Helper():
 
         #How many sims of the type.
         global_sim_num = self.get_last_sim(filename, num_turbs)
-        #Update to new sim val.
-        global_sim_num += 1
         global_sim_num = str(global_sim_num)
+
         #Finally the string is in a format such as 0000X or 00XXX, its zfill
         try:
             global_sim_num = global_sim_num.zfill(4)
@@ -97,7 +96,7 @@ class CSV_Helper():
 
             sim_count = sim_count/3
 
-        return sim_count
+        return int(sim_count)
 
     def sort_array_ascendX(self, arr):
         #Simple bubble sort for tuple arrays.
