@@ -66,17 +66,18 @@ class AL_Helper():
                 #¬¬¬¬¬¬¬¬¬¬WE NEED TO WAIT FOR THE JOB TO BE DONE¬¬¬¬¬¬¬¬¬¬¬¬¬¬
                 #Every 5 minutes check the existance of a file. 
                 
+                #Mo and Brom have sent ideas I can use.
+                
+                
 
                 #Extract newly added data and throw in the desired data file.
-                self.CSV.extract_turbine_data("../../data", num_turb, windspeed, local_sim_num)
+                self.CSV.extract_turbine_data("../../data/all_Dataset_V2", num_turb, windspeed, local_sim_num)
                 local_sim_num += 1
 
                 #6 Retraing the model and see if happy now
                 trained_gp_model = self.GP.train_model(filename)
                 refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
 
-
-                pass
             else:
                 print("The model is happy, finding a new configuration.")
-                pass 
+                 

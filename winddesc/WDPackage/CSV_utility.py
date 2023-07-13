@@ -23,10 +23,10 @@ class CSV_Helper():
     def __init__(self) -> None:
         pass
     
-    #Written by Dr. Brommer and Jingjing
+    #Written by Dr. Brommer and Jingjing, updated by Stef
     def extract_turbine_data(self, filename, num_turbs, windspeed, sim_num):
         
-        #Check out how to parse the sim_num = "0005" stef
+        #This gets us the local directory.
         simulation_directory="simulation/"+sim_num
         coordinate_file=simulation_directory+"/xy_turbine.txt"
         
@@ -46,8 +46,19 @@ class CSV_Helper():
                     cfd_data[i]=df[uref].iloc[-1]
                 print(cfd_data)
 
+        #How many sims of the type.
+        global_sim_num = self.get_last_sim(filename, num_turbs)
+        #Update to new sim val.
+        global_sim_num += 1
+        global_sim_num = str(global_sim_num)
+        #Finally the string is in a format such as 0000X or 00XXX, its zfill
+        try:
+            global_sim_num = global_sim_num.zfill(4)
+        except ValueError:
+            print("Oop at 10k sims, tell Stef to change code.")
+
         #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬NEW NAMING FORMAT¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
-        simname=sim_num+"_"+str(windspeed)+"_"+str(num_turbs)
+        simname=global_sim_num+"_"+str(windspeed)+"_"+str(num_turbs)
         #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
 
         dataset=pd.DataFrame()
@@ -69,6 +80,22 @@ class CSV_Helper():
         print(turbine_csv)
 
         turbine_csv.to_csv(filename,index=True)
+
+    def get_last_sim(self, filename, num_turbs):
+        with open(filename) as csvfile:
+            csv_reader = csv.reader(csvfile, delimiter=',')
+
+            line_count = 0
+
+            sim_count = 0
+
+            for row in csv_reader:
+                if line_count > 0:
+                    if row[3] == num_turbs:
+                        sim_count += 1 
+                line_count += 1
+
+            return sim_count
 
     def sort_array_ascendX(self, arr):
         #Simple bubble sort for tuple arrays.
@@ -189,6 +216,7 @@ class CSV_Data_Vis():
                 if line_count > 0:
                     num_turb = int(row[3])
                     if num_turb == 3:
+                            #Since starts at 0, does on the 4th.
                             if count % 3 == 0:
                                 #Reorders the data so that the 2nd turbine is always infront of 3rd
                                 wind_path_array = self.helper.sort_array_ascendX(wind_path_array)
