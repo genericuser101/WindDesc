@@ -95,6 +95,8 @@ class CSV_Helper():
                         sim_count += 1 
                 line_count += 1
 
+            sim_count = sim_count/3
+
         return sim_count
 
     def sort_array_ascendX(self, arr):
