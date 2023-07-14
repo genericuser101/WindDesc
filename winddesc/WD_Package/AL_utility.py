@@ -24,22 +24,10 @@ class AL_Helper():
         self.TU = GP_utility.Turbine_Helper()
         self.CFD = CFD_utility.CFD_Helper()
         self.CSV = CSV_utility.CSV_Helper()
-
-    def last_local_sim(self, folder_path):
-
-        subfolders = os.listdir(folder_path)
-
-        # Sort the subfolders in ascending order
-        sorted_subfolders = sorted(subfolders, key=lambda x: int(x) if x.isdigit() else -1)
-
-        # Get the last folder
-        local_sim_num = sorted_subfolders[-1] if sorted_subfolders else None
-
-        return local_sim_num
     
     def rock_and_roll(self, num_iter, filename, num_turb, tolerance, method, windspeed):  
 
-        local_sim_num = self.last_local_sim(config.simulations_path)
+        local_sim_num = self.CFD.last_local_sim(config.simulations_path)
         local_sim_num += 1
         
         for i in range(num_iter):
@@ -72,7 +60,7 @@ class AL_Helper():
                 #Every 20 minutes check the existance of a file. 
                 simFlag = False
                 while simFlag == False:
-                    simFlag = self.CFD.is_simulation_finished(local_sim_num)
+                    simFlag = self.CFD.is_sim_done(local_sim_num)
                     time.sleep(1200)
 
                 #Extract newly added data and throw in the desired data file.
