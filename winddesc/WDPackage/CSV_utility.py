@@ -58,6 +58,7 @@ class CSV_Helper():
 
         #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬NEW NAMING FORMAT¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
         simname=global_sim_num+"_"+str(windspeed)+"_"+str(num_turbs)
+        #Add directionality
         #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
 
         dataset=pd.DataFrame()

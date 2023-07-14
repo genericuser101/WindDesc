@@ -207,7 +207,6 @@ class CFD_Helper():
             
         return 0
 
-
     def display_turbine_configuration(self, turbines):
         #Now that I changed the structure the try and catch kinda useless.
         try:
@@ -237,4 +236,22 @@ class CFD_Helper():
             print("!No Turbine Loctaions Generated!")
             print("Please run the .generate_locations() function.")
 
-    
+
+    def is_simulation_finished(self, sim_num):
+        
+        #First build the filepath
+        filepath = "../../simulation/" + str(sim_num) + "/X-OUTPUT-FOLDER/LOGGING/file.log"
+
+        with open(filepath, "rb") as file:
+            try:
+                file.seek(-2, os.SEEK_END)
+                while file.read(1) != b'\n':
+                    file.seek(-2, os.SEEK_CUR)
+            except OSError:
+                file.seek(0)
+            last_line = file.readline().decode()
+        
+        if last_line == "Solver loop finished":
+            return True
+        else:
+            return False
