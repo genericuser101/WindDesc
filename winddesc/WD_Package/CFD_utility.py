@@ -9,6 +9,8 @@ from itertools import combinations
 #Required Files
 from cutoffs import Polynomial
 import GP_utility as GP
+import WD_config
+config = WD_config.config()
 import three_desc_model as exponential_new
 
 
@@ -240,7 +242,7 @@ class CFD_Helper():
     def is_simulation_finished(self, sim_num):
         
         #First build the filepath
-        filepath = "../../simulation/" + str(sim_num) + "/X-OUTPUT-FOLDER/LOGGING/file.log"
+        filepath = config.simulations_path + str(sim_num) + "/X-OUTPUT-FOLDER/LOGGING/file.log"
 
         with open(filepath, "rb") as file:
             try:

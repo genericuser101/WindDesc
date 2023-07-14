@@ -15,6 +15,7 @@ from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 
 import GP_utility
+import WD_config as cnfg 
 
 from IPython.display import display
 GPy.plotting.change_plotting_library('matplotlib')

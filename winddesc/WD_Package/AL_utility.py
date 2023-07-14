@@ -9,6 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time 
 
+import WD_config
+config = WD_config.config()
+
 import CFD_utility 
 import GP_utility
 import CSV_utility 
@@ -36,7 +39,7 @@ class AL_Helper():
     
     def rock_and_roll(self, num_iter, filename, num_turb, tolerance, method, windspeed):  
 
-        local_sim_num = self.last_local_sim("../../simulation")
+        local_sim_num = self.last_local_sim(config.simulations_path)
         local_sim_num += 1
         
         for i in range(num_iter):
