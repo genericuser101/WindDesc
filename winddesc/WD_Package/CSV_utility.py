@@ -399,7 +399,7 @@ class CSV_Data_Vis():
                                 
                 line_count += 1
 
-        ax_3t.set(title="Three Turbine Data - Discriptor Distribution")
+        ax_3t.set(title="Three Turbine Data - Discriptor Distribution", xlabel="G2", ylabel="G4", zlabel="G6")
         ax_3t.legend(handles=legend_elements_3t, loc="upper right")
 
         plt.show()
