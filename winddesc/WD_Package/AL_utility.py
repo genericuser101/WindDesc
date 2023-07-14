@@ -76,7 +76,7 @@ class AL_Helper():
                     time.sleep(1200)
 
                 #Extract newly added data and throw in the desired data file.
-                self.CSV.extract_turbine_data("../../data/all_Dataset_V2", num_turb, windspeed, local_sim_num)
+                self.CSV.extract_turbine_data(config.data_path, num_turb, windspeed, local_sim_num)
                 local_sim_num += 1
 
                 #6 Retraing the model and see if happy now
