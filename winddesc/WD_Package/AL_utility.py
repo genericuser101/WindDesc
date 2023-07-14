@@ -7,6 +7,11 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import time 
+
+import WD_config
+config = WD_config.config()
+
 import CFD_utility 
 import GP_utility
 import CSV_utility 
@@ -34,7 +39,7 @@ class AL_Helper():
     
     def rock_and_roll(self, num_iter, filename, num_turb, tolerance, method, windspeed):  
 
-        local_sim_num = self.last_local_sim("../../simulation")
+        local_sim_num = self.last_local_sim(config.simulations_path)
         local_sim_num += 1
         
         for i in range(num_iter):
@@ -64,14 +69,14 @@ class AL_Helper():
                 self.CFD.simulate(turbines, local_sim_num)
                 
                 #¬¬¬¬¬¬¬¬¬¬WE NEED TO WAIT FOR THE JOB TO BE DONE¬¬¬¬¬¬¬¬¬¬¬¬¬¬
-                #Every 5 minutes check the existance of a file. 
-                
-                #Mo and Brom have sent ideas I can use.
-                
-                
+                #Every 20 minutes check the existance of a file. 
+                simFlag = False
+                while simFlag == False:
+                    simFlag = self.CFD.is_simulation_finished(local_sim_num)
+                    time.sleep(1200)
 
                 #Extract newly added data and throw in the desired data file.
-                self.CSV.extract_turbine_data("../../data/all_Dataset_V2", num_turb, windspeed, local_sim_num)
+                self.CSV.extract_turbine_data(config.data_path, num_turb, windspeed, local_sim_num)
                 local_sim_num += 1
 
                 #6 Retraing the model and see if happy now

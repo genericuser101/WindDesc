@@ -15,6 +15,8 @@ from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 
 import GP_utility
+import WD_config
+config = WD_config.config() 
 
 from IPython.display import display
 GPy.plotting.change_plotting_library('matplotlib')
@@ -27,7 +29,7 @@ class CSV_Helper():
     def extract_turbine_data(self, filename, num_turbs, windspeed, sim_num):
         
         #This gets us the local directory.
-        simulation_directory="simulation/"+sim_num
+        simulation_directory=config.simulations_path+sim_num
         coordinate_file=simulation_directory+"/xy_turbine.txt"
         
         #Read coordinate file
@@ -58,6 +60,7 @@ class CSV_Helper():
 
         #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬NEW NAMING FORMAT¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
         simname=global_sim_num+"_"+str(windspeed)+"_"+str(num_turbs)
+        #Add directionality maybe
         #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
 
         dataset=pd.DataFrame()
