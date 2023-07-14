@@ -238,8 +238,19 @@ class CFD_Helper():
             print("!No Turbine Loctaions Generated!")
             print("Please run the .generate_locations() function.")
 
+    def last_local_sim(self, folder_path):
 
-    def is_simulation_finished(self, sim_num):
+        subfolders = os.listdir(folder_path)
+
+        # Sort the subfolders in ascending order
+        sorted_subfolders = sorted(subfolders, key=lambda x: int(x) if x.isdigit() else -1)
+
+        # Get the last folder
+        local_sim_num = sorted_subfolders[-1] if sorted_subfolders else None
+
+        return local_sim_num
+
+    def is_sim_done(self, sim_num):
         
         #First build the filepath
         filepath = config.simulations_path + str(sim_num) + "/X-OUTPUT-FOLDER/LOGGING/file.log"
