@@ -9,12 +9,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time 
 
-import WD_config
+from WD_Package import WD_config
 config = WD_config.config()
 
-import CFD_utility 
-import GP_utility
-import CSV_utility 
+from WD_Package import CFD_utility 
+from WD_Package import GP_utility
+from WD_Package import CSV_utility 
 
 
 class AL_Helper():

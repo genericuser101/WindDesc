@@ -14,8 +14,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 
-import GP_utility
-import WD_config
+from WD_Package import GP_utility
+from WD_Package import WD_config
 config = WD_config.config() 
 
 from IPython.display import display

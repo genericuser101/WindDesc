@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 from itertools import combinations
 
 #Required Files
-from cutoffs import Polynomial
-import GP_utility as GP
-import WD_config
+from WD_Package import cutoffs
+from WD_Package import GP_utility as GP
+from WD_Package import WD_config
 config = WD_config.config()
-import three_desc_model as exponential_new
+from WD_Package import three_desc_model as exponential_new
 
 
 class CFD_Helper():
