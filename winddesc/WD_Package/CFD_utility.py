@@ -204,7 +204,7 @@ class CFD_Helper():
         with open(r'WD_Package/xy_turbine.txt', 'w') as file:
             file.write(data)
                 #execute script for creating and submitting CFD simulation
-        exit_code = os.system('bash create_turbine_file.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+windspd+' '+winddir)
+        exit_code = os.system('bash WD_Package/create_turbine_files.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+windspd+' '+winddir)
         print(exit_code)
             
         return 0
