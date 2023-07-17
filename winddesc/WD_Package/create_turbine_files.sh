@@ -24,13 +24,13 @@ cp make_new_zones.py ../../simulation/$k/make_new_zones.py
 sed -i -e"s/basecase/${basecase}/" ../../simulation/$k/make_new_zones.py
 cp turbine.job ../../simulation/$k/$k.job
 sed -i -e "s/windir/$windir/g" -e "s/casename/$casename/" ../../simulation/$k/$k.job
-cp snappyHexMeshDict Mesh_creation/system/snappyHexMeshDict
+cp snappyHexMeshDict mesh_creation/system/snappyHexMeshDict
 ( #Subshell to return to correct directory
-    cd Mesh_creation 
+    cd ../../mesh_creation 
     bash mesh_creation.sh
 )
-cp Mesh_creation/zCFDInterface/Mesh_creation.h5 ../../simulation/$k/turbine.h5
-rm -rf Mesh_creation/zCFDInterface
+cp mesh_creation/zCFDInterface/Mesh_creation.h5 ../../simulation/$k/turbine.h5
+rm -rf mesh_creation/zCFDInterface
 rm -rf 1
 cd ../../simulation/$k
 echo sbatch $k.job
