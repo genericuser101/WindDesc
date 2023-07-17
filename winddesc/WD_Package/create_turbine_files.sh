@@ -11,7 +11,7 @@ windirf=$windir.0
 basecase="sim_${k}"
 casename="${basecase}_${windir}p00_${winspd}p00"
 mkdir ../simulation/$k
-cd /WD_Package
+cd WD_Package
 cp catalyst.py ../simulation/$k/catalyst.py
 cp Siemens_SWT_2.3-93_106.5d_2.3MW_R93m_H63.3m_Air1.225.trbx ../simulation/$k/Siemens_SWT_2.3-93_106.5d_2.3MW_R93m_H63.3m_Air1.225.trbx
 cp turbine.stl ../simulation/$k/turbine.stl
