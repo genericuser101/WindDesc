@@ -204,7 +204,7 @@ class CFD_Helper():
         with open(r'WD_Package/xy_turbine.txt', 'w') as file:
             file.write(data)
                 #execute script for creating and submitting CFD simulation
-        exit_code = os.system('bash WD_Package/create_turbine_files.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+windspd+' '+winddir)
+        exit_code = os.system('bash WD_Package/create_turbine_files.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+str(windspd)+' '+str(winddir))
         print(exit_code)
             
         return 0
@@ -250,10 +250,12 @@ class CFD_Helper():
 
         return local_sim_num
 
-    def is_sim_done(self, sim_num):
+    def is_sim_done(self, sim_num, windspd, winddir):
         
         #First build the filepath
-        filepath = config.simulations_path + str(sim_num) + "/X-OUTPUT-FOLDER/LOGGING/file.log"
+        zCFDpath =  "turbine_" + str(winddir) + "p00_" + str(windspd) + "p00"
+
+        filepath = config.simulations_path + str(sim_num)+ "/" + zCFDpath + "_P14_OUTPUT/" + "LOGGING/" + zCFDpath + ".0.log"
 
         with open(filepath, "rb") as file:
             try:
