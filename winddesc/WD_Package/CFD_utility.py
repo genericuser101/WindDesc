@@ -65,7 +65,7 @@ class CFD_Helper():
 
     #Slightly modified version of Jingjings, simulate function. I actually dont know if she wrote this. 
     #Who cares no-one reads the comments longer than one line la la la windfarm goes brrrrr...
-    def simulate(self, turbines, sim_number):
+    def simulate(self, turbines, sim_number, windspd, winddir):
         positions = np.array(turbines)
         
         # Calculate distances between all pairs of turbines
@@ -194,17 +194,17 @@ class CFD_Helper():
     }
     mergeTolerance 1e-6;
     '''
-        with open(r'snappyHexMeshDict', 'w') as file:
+        with open(r'WD_Package/snappyHexMeshDict', 'w') as file:
             file.write(data)
 
         #Write turbine file
         data=''
         for i in range(self.num_turb):
             data = data + 'T{:03d} {} {}\n'.format(i,str(turbine_coords[i][0]),str(turbine_coords[i][1]))
-        with open(r'xy_turbine.txt', 'w') as file:
+        with open(r'WD_Package/xy_turbine.txt', 'w') as file:
             file.write(data)
                 #execute script for creating and submitting CFD simulation
-        exit_code = os.system('bash create_turbine_files.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2))
+        exit_code = os.system('bash create_turbine_file3.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+windspd+' '+winddir)
         print(exit_code)
             
         return 0
