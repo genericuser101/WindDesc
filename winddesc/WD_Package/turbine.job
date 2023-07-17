@@ -37,7 +37,7 @@ export TASKS_PER_NODE=14
 export THREADS_PER_TASK=-1
 
 #EDIT as needed
-export ZCFDDIR=/storage/eng/phslay/zCFD-icc-sse-impi-2019.11.95-Linux-64bit
+export ZCFDDIR=/storage/eng/esugxk/zCFD-icc-sse-impi-2019.11.95-Linux-64bit
 
 CPUS_PER_NODE=`echo ${SLURM_JOB_CPUS_PER_NODE}  | cut -d \( -f 1`
 echo cpu per node $CPUS_PER_NODE
