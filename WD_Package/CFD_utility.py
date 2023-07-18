@@ -27,7 +27,6 @@ class CFD_Helper():
         self.turb = [self.turbine_utility.symbol]
 
 
-    #Jingjing's random turbine generation.
     def generate_locations(self):
         while True:
             # Generate random coordinates
@@ -63,8 +62,6 @@ class CFD_Helper():
 
         return turbines, neigh 
 
-    #Slightly modified version of Jingjings, simulate function. I actually dont know if she wrote this. 
-    #Who cares no-one reads the comments longer than one line la la la windfarm goes brrrrr...
     def simulate(self, turbines, sim_number, windspd, winddir):
         positions = np.array(turbines)
         
