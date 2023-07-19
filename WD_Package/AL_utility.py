@@ -4,6 +4,7 @@
 
 #Call me Thanos the way I collect these utility files.
 import os
+import math
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,6 +32,16 @@ class AL_Helper():
         local_sim_num = self.CFD.last_local_sim(config.simulations_path)
         local_sim_num += 1
         
+        #------------------------------------TRAINING FORK-----------------------------------------#
+        try:
+            if method == "simple":
+                pass
+            elif method == "zhikh":
+                encoder = zhikh_Encoder()
+        except ValueError:
+            print("Training method not recognised. Check github for currently supported.")
+
+        #------------------------------------ITERATIVE LOOP----------------------------------------#
         for i in range(num_iter):
 
             #Generate coords + Train Model
@@ -41,19 +52,11 @@ class AL_Helper():
             #Check if there are any outliers in the tolerancing.
             if any(refstdev) > tolerance:
 
-                #Training fork for the methodologies.
-                try:
-                    if method == "simple":
-                        pass
-                    elif method == "bayesian":
-                        pass 
-                    elif method == "autoencoder":
-                        pass
-                    #¬¬¬¬¬¬¬¬ADD MORE TECHNIQUES¬¬¬¬¬¬¬¬¬¬¬¬¬
+                if method == "simple":
+                    pass
+                elif method == "zhikh":
+                    pass
 
-                except ValueError:
-                    print("Training method not recognised. Check github for currently supported.")
-                
                 #New simulation is run on the fed-forward coordinates.
                 self.CFD.simulate(turbines, local_sim_num)
                 
@@ -76,3 +79,22 @@ class AL_Helper():
             else:
                 print("The model is happy, finding a new configuration.")
                  
+
+class zhikh_Encoder():
+    def __init__(self) -> None:
+        #------------------------Positions------------------------#
+        self.pos_tol = 
+
+        #-----------------------Descriptors-----------------------#
+        self.desc_tol = 
+
+        self.PD_ratio = 
+        self.TU = GP_utility.Turbine_Helper()
+        self.CSV = 
+
+    #positions + fingerprints + neighbours
+    #check for neighbour similarity 
+
+    def project(self, num_turb, positions, train_data,):
+        fingerprints = self.TU.fingerprint(positions, num_turb)
+
