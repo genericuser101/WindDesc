@@ -270,7 +270,7 @@ class CFD_Helper():
                 file.seek(0)
             last_line = file.readline().decode()
         
-        if last_line.strip() == "Solver loop finished":
+        if last_line == "Solver loop finished":
             return True
-        else:    
+        else:
             return False
