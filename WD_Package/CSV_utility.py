@@ -29,7 +29,7 @@ class CSV_Helper():
     def extract_turbine_data(self, filename, num_turbs, windspeed, sim_num):
         
         #This gets us the local directory.
-        simulation_directory=config.simulations_path+sim_num
+        simulation_directory=config.simulations_path+"/"+sim_num
         coordinate_file=simulation_directory+"/xy_turbine.txt"
         
         #Read coordinate file
