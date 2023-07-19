@@ -206,6 +206,7 @@ class CFD_Helper():
         #Execute script for creating and submitting CFD simulation, parse the local simulation number, number of turbines,
         #windspeed, wind direction, templates path, simulations path, mesh path
         temp_path = config.package_path + "/create_turbine_files.sh"
+        print(temp_path)
         exit_code = os.system('bash {temp_path} '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+str(windspd)+' '+
                               str(winddir)+' '+config.template_files_path+' '+config.simulations_path+' '+config.mesh_path)
         print(exit_code)
