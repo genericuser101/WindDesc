@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import time 
+from itertools import combinations
 
 from WD_Package import WD_config
 config = WD_config.config()
@@ -64,6 +65,7 @@ class AL_Helper():
                     time.sleep(1200)
 
                 #Extract newly added data and throw in the desired data file.
+                _ = local_sim_num.zfill(4)
                 self.CSV.extract_turbine_data(config.data_path, num_turb, windspeed, local_sim_num)
                 local_sim_num += 1
 
