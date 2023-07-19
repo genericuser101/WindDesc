@@ -191,17 +191,23 @@ class CFD_Helper():
     }
     mergeTolerance 1e-6;
     '''
-        with open(r'WD_Package/snappyHexMeshDict', 'w') as file:
+        temp_path = config.template_files_path + '/snappyHexMeshDict'
+        with open(temp_path, 'w') as file:
             file.write(data)
 
         #Write turbine file
         data=''
         for i in range(self.num_turb):
             data = data + 'T{:03d} {} {}\n'.format(i,str(turbine_coords[i][0]),str(turbine_coords[i][1]))
-        with open(r'WD_Package/xy_turbine.txt', 'w') as file:
+        temp_path = config.template_files_path + '/xy_turbine.txt'
+        with open(temp_path, 'w') as file:
             file.write(data)
-                #execute script for creating and submitting CFD simulation
-        exit_code = os.system('bash WD_Package/create_turbine_files.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+str(windspd)+' '+str(winddir))
+        
+        #Execute script for creating and submitting CFD simulation, parse the local simulation number, number of turbines,
+        #windspeed, wind direction, templates path, simulations path, mesh path
+        temp_path = config.package_path + "/create_turbine_files.sh"
+        exit_code = os.system('bash {temp_path} '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+str(windspd)+' '+
+                              str(winddir)+' '+config.template_files_path+' '+config.simulations_path+' '+config.mesh_path)
         print(exit_code)
             
         return 0
@@ -263,7 +269,7 @@ class CFD_Helper():
                 file.seek(0)
             last_line = file.readline().decode()
         
-        if last_line == "Solver loop finished":
+        if last_line.strip() == "Solver loop finished":
             return True
-        else:
+        else:    
             return False
