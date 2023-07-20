@@ -16,7 +16,6 @@ from WD_Package import three_desc_model as exponential_new
 
 class CFD_Helper():
 
-
     def __init__(self, min_dist, max_xdist, max_ydist, num_turb) -> None:
         self.min_dist = min_dist
         self.max_xdist = max_xdist

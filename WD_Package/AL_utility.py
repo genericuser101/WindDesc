@@ -49,7 +49,7 @@ class AL_Helper():
             trained_gp_model = self.GP.train_model(filename)
             refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
 
-            #Check if there are any outliers in the tolerancing.
+            #Check if there are major errors.
             if any(refstdev) > tolerance:
 
                 if method == "simple":
@@ -68,7 +68,7 @@ class AL_Helper():
                     time.sleep(1200)
 
                 #Extract newly added data and throw in the desired data file.
-                _ = local_sim_num.zfill(4)
+                _ = str(local_sim_num).zfill(4)
                 self.CSV.extract_turbine_data(config.data_path, num_turb, windspeed, local_sim_num)
                 local_sim_num += 1
 
@@ -90,11 +90,25 @@ class zhikh_Encoder():
 
         self.PD_ratio = 
         self.TU = GP_utility.Turbine_Helper()
-        self.CSV = 
+        self.CSV = CSV_utility.CSV_Helper()
 
     #positions + fingerprints + neighbours
     #check for neighbour similarity 
 
-    def project(self, num_turb, positions, train_data,):
+    def project(self, refstdev, num_turb, positions, train_data_path,):
         fingerprints = self.TU.fingerprint(positions, num_turb)
+        neigh = self.TU.nlist(positions, num_turb)
+        
+        #Case A: All errors are high, scenario is new, place
 
+
+        #Case B: More than half of errors high, tune all, place, DESC CHECK
+
+
+        #Case C: Less than half of errors high, keep the high and tune the low, place, DESK CHECK
+
+
+        #Case D: Gets sorted by the selection, model is happy.
+        
+
+    
