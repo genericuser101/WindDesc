@@ -4,6 +4,7 @@
 
 #Call me Thanos the way I collect these utility files.
 import os
+import math
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,6 +32,16 @@ class AL_Helper():
         local_sim_num = self.CFD.last_local_sim(config.simulations_path)
         local_sim_num += 1
         
+        #------------------------------------TRAINING FORK-----------------------------------------#
+        try:
+            if method == "simple":
+                pass
+            elif method == "zhikh":
+                encoder = zhikh_Encoder()
+        except ValueError:
+            print("Training method not recognised. Check github for currently supported.")
+
+        #------------------------------------ITERATIVE LOOP----------------------------------------#
         for i in range(num_iter):
 
             #Generate coords + Train Model
@@ -38,22 +49,14 @@ class AL_Helper():
             trained_gp_model = self.GP.train_model(filename)
             refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
 
-            #Check if there are any outliers in the tolerancing.
+            #Check if there are major errors.
             if any(refstdev) > tolerance:
 
-                #Training fork for the methodologies.
-                try:
-                    if method == "simple":
-                        pass
-                    elif method == "bayesian":
-                        pass 
-                    elif method == "autoencoder":
-                        pass
-                    #¬¬¬¬¬¬¬¬ADD MORE TECHNIQUES¬¬¬¬¬¬¬¬¬¬¬¬¬
+                if method == "simple":
+                    pass
+                elif method == "zhikh":
+                    pass
 
-                except ValueError:
-                    print("Training method not recognised. Check github for currently supported.")
-                
                 #New simulation is run on the fed-forward coordinates.
                 self.CFD.simulate(turbines, local_sim_num)
                 
@@ -65,7 +68,7 @@ class AL_Helper():
                     time.sleep(1200)
 
                 #Extract newly added data and throw in the desired data file.
-                _ = local_sim_num.zfill(4)
+                _ = str(local_sim_num).zfill(4)
                 self.CSV.extract_turbine_data(config.data_path, num_turb, windspeed, local_sim_num)
                 local_sim_num += 1
 
@@ -76,3 +79,36 @@ class AL_Helper():
             else:
                 print("The model is happy, finding a new configuration.")
                  
+
+class zhikh_Encoder():
+    def __init__(self) -> None:
+        #------------------------Positions------------------------#
+        self.pos_tol = 
+
+        #-----------------------Descriptors-----------------------#
+        self.desc_tol = 
+
+        self.PD_ratio = 
+        self.TU = GP_utility.Turbine_Helper()
+        self.CSV = CSV_utility.CSV_Helper()
+
+    #positions + fingerprints + neighbours
+    #check for neighbour similarity 
+
+    def project(self, refstdev, num_turb, positions, train_data_path,):
+        fingerprints = self.TU.fingerprint(positions, num_turb)
+        neigh = self.TU.nlist(positions, num_turb)
+        
+        #Case A: All errors are high, scenario is new, place
+
+
+        #Case B: More than half of errors high, tune all, place, DESC CHECK
+
+
+        #Case C: Less than half of errors high, keep the high and tune the low, place, DESK CHECK
+
+
+        #Case D: Gets sorted by the selection, model is happy.
+        
+
+    

@@ -137,7 +137,6 @@ class CSV_Helper():
 
         print(f"Modified CSV file saved as '{output_file}'.")
 
-
 class CSV_Data_Vis():
     def __init__(self, filename) -> None:
         self.filename = filename
