@@ -27,15 +27,12 @@ sed -i -e"s/basecase/${basecase}/" $simpath/$k/make_new_zones.py
 cp $temppath/turbine.job $simpath/$k/$k.job
 sed -i -e "s/windir/$windir/g" -e "s/casename/$casename/" $simpath/$k/$k.job
 cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
-( #We execute the mesh file but also pass it the meshpath command casue $PWD returns
+( #We execute the mesh file but also pass it the meshpath command because $PWD returns
   #the path from where the script is envoked. 
+    rm -rf $meshpath/zCFDInterface
+    rm -rf $meshpath/1
     bash $meshpath/mesh_creation.sh $meshpath
 )
 cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
-rm -rf $meshpath/zCFDInterface
-rm -rf 1
-cd 
-cd $simpath/$k
-echo sbatch $k.job
-cd ../..
+echo sbatch $simpath/$k/$k.job
 exit $exitcode
