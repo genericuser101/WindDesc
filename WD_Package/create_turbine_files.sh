@@ -33,7 +33,7 @@ cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
 )
 cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
 rm -rf $meshpath/zCFDInterface
-rm -rf 1
+rm -rf $meshpath/1
 cd 
 cd $simpath/$k
 echo sbatch $k.job
