@@ -100,7 +100,7 @@ class zhikh_Encoder():
         neigh = self.TU.nlist(positions, num_turb)
         
         #Case A: All errors are high, scenario is new, place
-
+        
 
         #Case B: More than half of errors high, tune all, place, DESC CHECK
 
