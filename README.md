@@ -42,11 +42,14 @@
   Takes care of all the pathing in the program so that the user can determine where they want things to store.
 
 ### Active Learning: 
-The active learning algorithm currently supports the following
+The active learning algorithm currently supports the following: \
+  - Simple Active Learning \
+  - Zhikharev Encoder \
 
 ### FAQ:
 Q:
 
 ### Known Issues, tickets to: stefan.zhikharev@warwick.ac.uk
+No currently know issues \
 0003:
 
