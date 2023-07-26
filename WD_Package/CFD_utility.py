@@ -204,8 +204,8 @@ class CFD_Helper():
         
         #Execute script for creating and submitting CFD simulation, parse the local simulation number, number of turbines,
         #windspeed, wind direction, templates path, simulations path, mesh path
-        temp_path = config.package_path + "/create_turbine_files.sh"
-        print(temp_path)
+        
+        #THE ONLY HARD CODED PATH IN THE PACKAGE
         exit_code = os.system('bash /home/eng/esugxk/storage/WindDesc/WindDesc/WD_Package/create_turbine_files.sh '+str(sim_number).zfill(4)+' '+str(self.num_turb).zfill(2)+' '+str(windspd)+' '+
                               str(winddir)+' '+config.template_files_path+' '+config.simulations_path+' '+config.mesh_path)
         print(exit_code)
@@ -269,7 +269,7 @@ class CFD_Helper():
                 file.seek(0)
             last_line = file.readline().decode()
          
-        if last_line == "Solver loop finished":
+        if last_line.strip() == "Solver loop finished":
             return True
         else:
             return False

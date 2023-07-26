@@ -83,12 +83,12 @@ class AL_Helper():
 class zhikh_Encoder():
     def __init__(self) -> None:
         #------------------------Positions------------------------#
-        self.pos_tol = 
+        self.pos_tol = 0
 
         #-----------------------Descriptors-----------------------#
-        self.desc_tol = 
+        self.desc_tol = 0
 
-        self.PD_ratio = 
+        self.PD_ratio = 1
         self.TU = GP_utility.Turbine_Helper()
         self.CSV = CSV_utility.CSV_Helper()
 
@@ -100,7 +100,7 @@ class zhikh_Encoder():
         neigh = self.TU.nlist(positions, num_turb)
         
         #Case A: All errors are high, scenario is new, place
-
+        
 
         #Case B: More than half of errors high, tune all, place, DESC CHECK
 

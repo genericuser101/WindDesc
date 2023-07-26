@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#cd ..
-#windir=270
-#winspd=10
 k=$1
 numturb=$2
 windspd=$3
@@ -11,7 +8,7 @@ temppath=$5
 simpath=$6
 meshpath=$7
 windirf=$windir.0
-basecase="sim_${k}"
+basecase="sim_${k}" 
 casename="${basecase}_${windir}p00_${winspd}p00"
 mkdir $simpath/$k
 cp $temppath/catalyst.py $simpath/$k/catalyst.py
@@ -35,5 +32,11 @@ cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
 )
 cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
 echo sbatch $simpath/$k/$k.job
-#Run the job, selection for exitcode = 0, greenlight, else, manual interferance
-exit $exitcode
+#Run the job, selection for exitcode = 0, greenlight, else, the program does not run.
+#The double exit code is slightly redundant but I want there to be a clear selection tree.
+if [ $exitcode -eq 0]; then 
+  bash $simpath/$k/$k.job
+  exit $exitcode
+else
+  exit $exitcode
+fi 
