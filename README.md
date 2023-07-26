@@ -41,12 +41,14 @@
     * 📜 WD_config.py \
   Takes care of all the pathing in the program so that the user can determine where they want things to store.
 
-### Active Learning: 
-The active learning algorithm currently supports the following
+## Active Learning: 
+The active learning algorithm currently supports the following: 
+  - Simple Parsing 
+  - Zhikharev Encoder
 
-### FAQ:
+## FAQ:
 Q:
 
-### Known Issues, tickets to: stefan.zhikharev@warwick.ac.uk
+## Known Issues, tickets to: stefan.zhikharev@warwick.ac.uk
+No currently know issues \
 0003:
-
