@@ -1,0 +1,4 @@
+/home/eng/esugxk/storage/WindDesc/WindDesc/simulation
+/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_Dataset_V2.csv
+/home/eng/esugxk/storage/WindDesc/WindDesc/template
+/home/eng/esugxk/storage/WindDesc/WindDesc/Mesh_creation/
