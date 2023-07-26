@@ -38,14 +38,15 @@
     * 📜 three_desc_model.py \
   Contains the three descriptor model used for predicting windspeeds.
 
+    * 📜 WD_config.py \
+  Takes care of all the pathing in the program so that the user can determine where they want things to store.
+
 ### Active Learning: 
 The active learning algorithm currently supports the following
 
 ### FAQ:
-Q: I am parsing a the filename but, its returning a directory ValueError? \
-A: If you aren't using the same architecture as WindDesc please pass the full path or at least the path from your code dir. Once the module is fully packaged the config file will be responsible for all this.
+Q:
 
 ### Known Issues, tickets to: stefan.zhikharev@warwick.ac.uk
-0001 - All the pathing is hardcoded and stems from where the code is run, hence requires "../file" operators. \
-0002 - The imports require a path change, as the strucutre is not yet packaged together.
+0003:
 
