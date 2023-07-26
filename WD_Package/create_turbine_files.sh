@@ -35,4 +35,5 @@ cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
 )
 cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
 echo sbatch $simpath/$k/$k.job
+#Run the job, selection for exitcode = 0, greenlight, else, manual interferance
 exit $exitcode
