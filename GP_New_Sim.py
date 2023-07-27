@@ -11,7 +11,7 @@ winddir = 270
 
 try:
     #sim_number = CFD.last_local_sim(config.simulations_path)
-    sim_number = 2
+    sim_number = 3
     CFD.simulate(turbines, sim_number, windspd, winddir)
 except FileExistsError:
     print("No simulation directory, should be neighbour to data, winddesc and mesh_creation!")
