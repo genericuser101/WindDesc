@@ -137,6 +137,11 @@ class CSV_Helper():
 
         print(f"Modified CSV file saved as '{output_file}'.")
 
+    def split_data_by_turb(self, desired_turb_array):
+        #Desired turbine array - how many turbines do you want the data for.
+        
+        pass
+
 class CSV_Data_Vis():
     def __init__(self, filename) -> None:
         self.filename = filename
