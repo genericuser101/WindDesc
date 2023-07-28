@@ -152,7 +152,7 @@ class CSV_Helper():
                 # Iterate through each row in the input CSV
                 for row in csv_reader:
                     print(row)
-                    if row[3] == num_turb: 
+                    if int(row[3]) == int(num_turb): 
                         csv_writer.writerow(row)
                     else:
                         pass 
