@@ -138,7 +138,7 @@ class CSV_Helper():
         print(f"Modified CSV file saved as '{output_file}'.")
 
     def split_data_by_turb(self, desired_turb_array):
-        
+
         for num_turb in desired_turb_array:
             filename = os.path.dirname(config.data_path)+ "/" + str(num_turb) + "_turbine_data.csv"
             with open(filename, 'w', newline='') as output_file, \
@@ -149,11 +149,10 @@ class CSV_Helper():
             # Write the header to the output CSV (if the input CSV has a header)
                 header = next(csv_reader)
                 csv_writer.writerow(header)
-
-            # Iterate through each row in the input CSV
-            for row in csv_reader:
-                if row[3] == num_turb: 
-                    csv_writer.writerow(row)
+                # Iterate through each row in the input CSV
+                for row in csv_reader:
+                    if row[3] == num_turb: 
+                        csv_writer.writerow(row)
 
 
 class CSV_Data_Vis():
