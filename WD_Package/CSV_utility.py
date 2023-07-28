@@ -151,8 +151,11 @@ class CSV_Helper():
                 csv_writer.writerow(header)
                 # Iterate through each row in the input CSV
                 for row in csv_reader:
+                    print(row)
                     if row[3] == num_turb: 
                         csv_writer.writerow(row)
+                    else:
+                        pass 
 
 
 class CSV_Data_Vis():
