@@ -139,8 +139,23 @@ class CSV_Helper():
 
     def split_data_by_turb(self, desired_turb_array):
         #Desired turbine array - how many turbines do you want the data for.
-        
-        pass
+        with open(config.data_path, 'r', newline='') as input_file:
+            csv_reader = csv.reader(input_file)
+
+        for num_turb in desired_turb_array:
+            filename = os.listdir(config.data_path)+ "/" + str(num_turb) + "_turbine_data.csv"
+            with open(filename, 'w', newline='') as output_file:
+            # Create CSV reader and writer objects
+                csv_writer = csv.writer(output_file)
+            # Write the header to the output CSV (if the input CSV has a header)
+                header = next(csv_reader)
+                csv_writer.writerow(header)
+
+            # Iterate through each row in the input CSV
+            for row in csv_reader:
+                if row[3] == num_turb:  # Replace [0] with the index of the column you want to check
+                    csv_writer.writerow(row)
+
 
 class CSV_Data_Vis():
     def __init__(self, filename) -> None:
