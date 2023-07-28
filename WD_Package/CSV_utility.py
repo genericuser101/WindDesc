@@ -153,7 +153,7 @@ class CSV_Helper():
 
             # Iterate through each row in the input CSV
             for row in csv_reader:
-                if row[3] == num_turb:  # Replace [0] with the index of the column you want to check
+                if row[3] == num_turb: 
                     csv_writer.writerow(row)
 
 
