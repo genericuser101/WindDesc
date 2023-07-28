@@ -143,7 +143,7 @@ class CSV_Helper():
             csv_reader = csv.reader(input_file)
 
         for num_turb in desired_turb_array:
-            filename = os.listdir(config.data_path)+ "/" + str(num_turb) + "_turbine_data.csv"
+            filename = os.path.dirname(config.data_path)+ "/" + str(num_turb) + "_turbine_data.csv"
             with open(filename, 'w', newline='') as output_file:
             # Create CSV reader and writer objects
                 csv_writer = csv.writer(output_file)
