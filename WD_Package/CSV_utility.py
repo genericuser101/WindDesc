@@ -178,7 +178,10 @@ class CSV_Helper():
                                 if float(turb_array[j, 0]) > float(turb_array[j + 1, 0]):
                                     print(f"fresh one:\n {turb_array}")
                                     turb_array[j, 5], turb_array[j + 1, 5] = turb_array[j + 1, 5], turb_array[j, 5]
-                                    turb_array[j,:], turb_array[j + 1,:] = turb_array[j + 1,:], turb_array[j,:]
+                                    _ = np.array(turb_array[j,:])
+                                    __ = np.array(turb_array[j + 1,:])
+                                    turb_array[j,:] = __
+                                    turb_array[j+1, :] = _
                                     print(f"changed one:\n {turb_array}")
 
                         for entry in turb_array:
