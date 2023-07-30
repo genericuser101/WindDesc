@@ -171,6 +171,8 @@ class CSV_Helper():
                 if int(row[3]) < 3:
                    csv_writer.writerow(row)
                 else:
+                    counter += 1
+                    turb_array.append(row)
                     if counter == int(row[3]):
                         turb_array = np.array(turb_array)
                         for i in range(counter):
@@ -189,9 +191,6 @@ class CSV_Helper():
 
                         counter = 0
                         turb_array = []
-
-                    counter += 1
-                    turb_array.append(row)
 
 
 class CSV_Data_Vis():
