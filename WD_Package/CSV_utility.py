@@ -177,11 +177,9 @@ class CSV_Helper():
                             for j in range(0, counter - i - 1):
                                 if float(turb_array[j, 0]) > float(turb_array[j + 1, 0]):
                                     print(f"fresh one:\n {turb_array}")
-                                    print
                                     turb_array[j, 5], turb_array[j + 1, 5] = turb_array[j + 1, 5], turb_array[j, 5]
                                     turb_array[j,:], turb_array[j + 1,:] = turb_array[j + 1,:], turb_array[j,:]
-                                    
-                        print(f"changed one:\n {turb_array}")
+                                    print(f"changed one:\n {turb_array}")
 
                         for entry in turb_array:
                             csv_writer.writerow(entry)
