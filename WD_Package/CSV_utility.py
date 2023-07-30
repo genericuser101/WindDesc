@@ -179,7 +179,7 @@ class CSV_Helper():
                         
                         for i in range(counter):
                             for j in range(0, counter-i-1):
-                                if int(turb_array[j,0]) > int(turb_array[j+1,0]):
+                                if float(turb_array[j,0]) > float(turb_array[j+1,0]):
                                     turb_array[j,5], turb_array[j+1,5] = turb_array[j+1,5], turb_array[j,5]
                                     turb_array[j], turb_array[j+1] = turb_array[j+1], turb_array[j] 
 
