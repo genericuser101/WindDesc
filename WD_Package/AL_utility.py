@@ -54,7 +54,7 @@ class AL_Helper():
             #Check if there are major errors.
             if any(refstdev) > abs_tol:
                 
-                encoder.project(refstdev, num_turb, turbines)
+                encoder.project(refwind, refstdev, num_turb, turbines)
 
                 #New simulation is run on the fed-forward coordinates.
                 self.CFD.simulate(turbines, local_sim_num)
@@ -81,7 +81,7 @@ class simple_Encoder():
     def __init__(self) -> None:
         pass
 
-    def project(self, refstdev, num_turb, positions):
+    def project(self, refwind, refstdev, num_turb, positions):
         return positions
         
 
@@ -96,7 +96,7 @@ class zhikh_Encoder():
         self.TU = GP_utility.Turbine_Helper()
         self.CSV = CSV_utility.CSV_Helper()
 
-    def project(self, refstdev, num_turb, positions):
+    def project(self, refwind, refstdev, num_turb, positions):
 
         fingerprints = self.TU.fingerprint(positions, num_turb)
         relevant_dataset = os.path.dirname(config.data_path) + "/" + num_turb + "_turbine_data.csv"
@@ -108,7 +108,7 @@ class zhikh_Encoder():
         
         #Case B: More than half of errors high.
         if num_meet_criterion > len(refstdev) / 2:
-            self.
+            pass
 
         #Case C: Less than half of errors high.
         elif num_meet_criterion < len(refstdev) / 2:
@@ -121,7 +121,7 @@ class zhikh_Encoder():
         pass 
     
     def get_X_closest(self, X, point):
-        
+        pass 
 
     def distance_to_point(self, point1, point2):
         x1, y1 = point1

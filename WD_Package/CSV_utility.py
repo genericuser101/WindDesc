@@ -121,15 +121,12 @@ class CSV_Helper():
         return array
 
     def old_format_to_new(self, old_filename, new_filename):
-        #Please update this function if the format changes and change the value in the comment below.
-        #Current Format Version = 2
-
         input_file = old_filename
         output_file = new_filename
 
         with open(input_file, 'r') as file:
             csv_reader = csv.reader(file)
-            rows = [row[1:] for row in csv_reader]  # Exclude the first column
+            rows = [row[1:] for row in csv_reader]  # Exclude the first row
 
         with open(output_file, 'w', newline='') as file:
             csv_writer = csv.writer(file)
@@ -156,6 +153,28 @@ class CSV_Helper():
                         csv_writer.writerow(row)
                     else:
                         pass 
+
+    def organise_data(self):
+        with open(config.data_path, 'r', newline='') as datafile, \
+             open("sorted_dataset.csv", 'w', newline='') as outputfile:
+        
+            csv_reader = csv.reader(datafile)
+            csv_writer = csv.writer(outputfile)
+
+            header = next(csv_reader)
+            csv_writer.writerow(header)
+
+            counter = 0
+            turb_array = []
+
+            for row in csv_reader:
+                if int(row[3]) < 3:
+                   csv_writer.writerow(row)
+                else:
+                    counter += 1
+                    turb_array.append([row[0], row[1]])
+                    
+
 
 
 class CSV_Data_Vis():
