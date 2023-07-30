@@ -172,9 +172,24 @@ class CSV_Helper():
                    csv_writer.writerow(row)
                 else:
                     counter += 1
-                    turb_array.append([row[0], row[1]])
-                    
+                    turb_array.append(row)
 
+                    if counter == int(row[3]):
+                        turb_array = np.array(turb_array)
+                        
+                        for i in range(counter):
+                            for j in range(0, counter-i-1):
+                                if int(turb_array[j,0]) > int(turb_array[j+1,0]):
+                                    turb_array[j,5], turb_array[j+1,5] = turb_array[j+1,5], turb_array[j,5]
+                                    turb_array[j], turb_array[j+1] = turb_array[j+1], turb_array[j] 
+
+                        for entry in turb_array:
+                            csv_writer.writerow(entry)
+
+                        counter = 0
+                        turb_array = []
+
+                    
 
 
 class CSV_Data_Vis():
