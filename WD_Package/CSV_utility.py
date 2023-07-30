@@ -180,8 +180,12 @@ class CSV_Helper():
                         for i in range(counter):
                             for j in range(0, counter-i-1):
                                 if float(turb_array[j,0]) > float(turb_array[j+1,0]):
-                                    turb_array[j,5], turb_array[j+1,5] = turb_array[j+1,5], turb_array[j,5]
-                                    turb_array[j], turb_array[j+1] = turb_array[j+1], turb_array[j] 
+                                    _ = turb_array[j,5]
+                                    turb_array[j,5] = turb_array[j+1,5]
+                                    turb_array[j+1,5] = _
+                                    _ = turb_array[j]
+                                    turb_array[j] = turb_array[j+1]
+                                    turb_array[j+1] = _
 
                         for entry in turb_array:
                             csv_writer.writerow(entry)
