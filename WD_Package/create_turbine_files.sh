@@ -35,6 +35,9 @@ echo sbatch $simpath/$k/$k.job
 #Run the job, selection for exitcode = 0, greenlight, else, the program does not run.
 #The double exit code is slightly redundant but I want there to be a clear selection tree.
 if [ $? -eq 0 ]; then 
-  sbatch $simpath/$k/$k.job
+(
+  cd $simpath/$k
+  sbatch $k.job
+)
 fi 
 exit $exitcode
