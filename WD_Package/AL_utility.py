@@ -10,6 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time 
 from itertools import combinations
+import csv 
 
 from WD_Package import WD_config
 config = WD_config.config()
@@ -98,6 +99,8 @@ class zhikh_Encoder():
 
     def project(self, refwind, refstdev, num_turb, positions):
 
+        positions = self.CSV.sort_array_ascendX(positions)
+
         fingerprints = self.TU.fingerprint(positions, num_turb)
         relevant_dataset = os.path.dirname(config.data_path) + "/" + num_turb + "_turbine_data.csv"
         num_meet_criterion = sum(1 for element in refstdev if element > self.abs_tol)
@@ -115,14 +118,23 @@ class zhikh_Encoder():
         elif num_meet_criterion < len(refstdev) / 2:
             pass
     
-    def small_errors_to_high(self):
-        pass
 
-    def small_errors_to_medium(self):
+    def adjust_small_errors(self):
         pass 
     
-    def get_X_closest(self, X, point):
-        pass 
+    def get_X_closest(self, X, point, relevant_dataset, turb_num):
+        closest_array = []
+
+        with open(relevant_dataset, 'r', newline='') as datafile:
+                csv_reader = csv.reader(datafile)
+                header = next(csv_reader)
+                for row in csv_reader:
+                    if len(closest_array) < 10:
+                        closest_array.append(row)
+                    else:
+                        for point in closest_array:
+                            pass
+
 
     def distance_to_point(self, point1, point2):
         x1, y1 = point1
