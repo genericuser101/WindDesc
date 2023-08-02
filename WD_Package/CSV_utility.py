@@ -139,7 +139,8 @@ class CSV_Helper():
         for num_turb in desired_turb_array:
             filename = os.path.dirname(config.data_path)+ "/" + str(num_turb) + "_turbine_data.csv"
             with open(filename, 'w', newline='') as output_file, \
-                 open(config.data_path, 'r', newline='') as input_file:
+                 open(os.path.dirname(config.data_path)+"/"+"sorted_dataset.csv", 'r', newline='') as input_file:
+
             # Create CSV reader and writer objects
                 csv_reader = csv.reader(input_file)
                 csv_writer = csv.writer(output_file)
@@ -156,7 +157,7 @@ class CSV_Helper():
 
     def organise_data(self):
         with open(config.data_path, 'r', newline='') as datafile, \
-             open("sorted_dataset.csv", 'w', newline='') as outputfile:
+             open(os.path.dirname(config.data_path)+"/"+"sorted_dataset.csv", 'w', newline='') as outputfile:
         
             csv_reader = csv.reader(datafile)
             csv_writer = csv.writer(outputfile)

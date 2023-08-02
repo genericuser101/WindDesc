@@ -111,6 +111,7 @@ class zhikh_Encoder():
             pass
 
         #Case C: Less than half of errors high.
+        #We want to adjust low errors to slightly higher ones to get more out of new sim.
         elif num_meet_criterion < len(refstdev) / 2:
             pass
     
