@@ -9,7 +9,7 @@ simpath=$6
 meshpath=$7
 windirf=$windir.0
 basecase="sim_${k}" 
-casename="${basecase}_${windir}p00_${winspd}p00"
+casename="${basecase}_${winddir}p00_${windspd}p00"
 mkdir $simpath/$k
 cp $temppath/catalyst.py $simpath/$k/catalyst.py
 cp $temppath/Siemens_SWT_2.3-93_106.5d_2.3MW_R93m_H63.3m_Air1.225.trbx $simpath/$k/Siemens_SWT_2.3-93_106.5d_2.3MW_R93m_H63.3m_Air1.225.trbx
@@ -23,20 +23,21 @@ cp $temppath/make_new_zones.py $simpath/$k/make_new_zones.py
 sed -i -e"s/basecase/${basecase}/" $simpath/$k/make_new_zones.py
 cp $temppath/turbine.job $simpath/$k/$k.job
 sed -i -e "s/windir/$windir/g" -e "s/casename/$casename/" $simpath/$k/$k.job
-cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
-( #We execute the mesh file but also pass it the meshpath command because $PWD returns
+#cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
+#( #We execute the mesh file but also pass it the meshpath command because $PWD returns
   #the path from where the script is envoked. 
-    rm -rf $meshpath/zCFDInterface
-    rm -rf $meshpath/1
-    bash $meshpath/mesh_creation.sh $meshpath
-)
-cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
+#    rm -rf $meshpath/zCFDInterface
+#    rm -rf $meshpath/1
+#    bash $meshpath/mesh_creation.sh $meshpath
+#)
+#cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
 echo sbatch $simpath/$k/$k.job
 #Run the job, selection for exitcode = 0, greenlight, else, the program does not run.
 #The double exit code is slightly redundant but I want there to be a clear selection tree.
 if [ $? -eq 0 ]; then 
 (
   cd $simpath/$k
+  ls -la
   sbatch $k.job
 )
 fi 
