@@ -22,22 +22,21 @@ sed -i -e"s/basecase/${basecase}/" $simpath/$k/make_turbine_zones.py
 cp $temppath/make_new_zones.py $simpath/$k/make_new_zones.py
 sed -i -e"s/basecase/${basecase}/" $simpath/$k/make_new_zones.py
 cp $temppath/turbine.job $simpath/$k/$k.job
-sed -i -e "s/windir/$windir/g" -e "s/casename/$casename/" $simpath/$k/$k.job
-#cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
-#( #We execute the mesh file but also pass it the meshpath command because $PWD returns
+sed -i -e "s/windir/$winddir/g" -e "s/casename/$casename/" $simpath/$k/$k.job
+cp $temppath/snappyHexMeshDict $meshpath/system/snappyHexMeshDict
+( #We execute the mesh file but also pass it the meshpath command because $PWD returns
   #the path from where the script is envoked. 
-#    rm -rf $meshpath/zCFDInterface
-#    rm -rf $meshpath/1
-#    bash $meshpath/mesh_creation.sh $meshpath
-#)
-#cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
+    rm -rf $meshpath/zCFDInterface
+    rm -rf $meshpath/1
+    bash $meshpath/mesh_creation.sh $meshpath
+)
+cp $meshpath/zCFDInterface/Mesh_creation.h5 $simpath/$k/turbine.h5
 echo sbatch $simpath/$k/$k.job
 #Run the job, selection for exitcode = 0, greenlight, else, the program does not run.
 #The double exit code is slightly redundant but I want there to be a clear selection tree.
 if [ $? -eq 0 ]; then 
 (
   cd $simpath/$k
-  ls -la
   sbatch $k.job
 )
 fi 

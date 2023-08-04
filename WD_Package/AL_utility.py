@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import time 
 from itertools import combinations
 import csv 
+import datetime
 
 from WD_Package import WD_config
 config = WD_config.config()
@@ -27,6 +28,7 @@ class AL_Helper():
         self.TU = GP_utility.Turbine_Helper()
         self.CFD = CFD_utility.CFD_Helper()
         self.CSV = CSV_utility.CSV_Helper()
+        self.log_file_name = input("Log File Name: ")
     
     def rock_and_roll(self, num_iter, num_turb, fine_tol, abs_tol, method, windspd, winddir):  
         
@@ -45,7 +47,7 @@ class AL_Helper():
         #------------------------------------ITERATIVE LOOP----------------------------------------#
         for i in range(num_iter):
 
-            print(f"Active learning iteration: {i}, started using the {method} encoder.")
+            self.info_log(f"Active learning iteration: {i}, started using the {method} encoder.")
 
             #Generate coords + Train Model
             turbines, neigh = self.CFD.generate_locations()
@@ -75,8 +77,12 @@ class AL_Helper():
                 refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
 
             else:
-                print("The model is happy, finding a new configuration.")
-                 
+                self.info_log("The model is happy, finding a new configuration.")
+
+    def info_log(self, message):
+        with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "w", newline='') as log_file:
+            log_file.write(str(datetime.datetime.now()) +":  "+ str(message) + "\n")
+
 
 class simple_Encoder():
     def __init__(self) -> None:
