@@ -42,7 +42,7 @@ class CSV_Helper():
         for filename_local in os.listdir(simulation_directory):
             if filename_local.endswith('.csv'):  # Only consider CSV files
                 print(filename_local)
-                df=pd.read_csv(filename_local, sep=' ')
+                df=pd.read_csv(config.simulations_path +"/"+filename_local, sep=' ')
                 df=df.tail(1) # Last line is the final result
                 for i in range(0,num_turbs):
                     uref='T00%d_uref' %(i)
