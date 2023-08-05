@@ -41,6 +41,7 @@ class CSV_Helper():
         cfd_data=np.zeros(num_turbs)
         for filename_local in os.listdir(simulation_directory):
             if filename_local.endswith('.csv'):  # Only consider CSV files
+                print(filename_local)
                 df=pd.read_csv(filename_local, sep=' ')
                 df=df.tail(1) # Last line is the final result
                 for i in range(0,num_turbs):
@@ -52,7 +53,7 @@ class CSV_Helper():
         global_sim_num = self.get_last_sim(filename, num_turbs)
         global_sim_num = str(global_sim_num)
 
-        #Finally the string is in a format such as 0000X or 00XXX, its zfill
+        #Finally the string is in a format such as 000X or 0XXX, its zfill
         try:
             global_sim_num = global_sim_num.zfill(4)
         except ValueError:
