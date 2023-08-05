@@ -14,4 +14,4 @@ try:
     sim_number = 4
     CFD.simulate(turbines, sim_number, windspd, winddir)
 except FileExistsError:
-    print("No simulation directory, should be neighbour to data, winddesc and mesh_creation!")
+    print("No simulation directory, should be neighbour to data, winddesc and mesh_creation!")  

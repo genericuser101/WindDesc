@@ -26,10 +26,10 @@ class CSV_Helper():
         pass
     
     #Written by Dr. Brommer and Jingjing, updated by Stef
-    def extract_turbine_data(self, filename, num_turbs, windspeed, sim_num):
+    def extract_turbine_data(self, filename, num_turbs, windspeed, winddir, sim_num):
         
         #This gets us the local directory.
-        simulation_directory=config.simulations_path+"/"+sim_num
+        simulation_directory=config.simulations_path+"/"+ str(sim_num).zfill(4)
         coordinate_file=simulation_directory+"/xy_turbine.txt"
         
         #Read coordinate file
@@ -58,11 +58,9 @@ class CSV_Helper():
         except ValueError:
             print("Oop at 10k sims, tell Stef to change code.")
 
-        #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬NEW NAMING FORMAT¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
-        simname=global_sim_num+"_"+str(windspeed)+"_"+str(num_turbs)
-        #Add directionality maybe
-        #¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
-
+        #-------------------------------NEW NAMING FORMAT------------------------------------
+        simname=global_sim_num+"_"+str(windspeed)+"_"+str(winddir)+"_"+str(num_turbs)
+    
         dataset=pd.DataFrame()
         for i in range(num_turbs):
             turb_data=pd.DataFrame(

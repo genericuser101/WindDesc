@@ -1,4 +1,6 @@
 import WD_Package.CSV_utility
 CSV = WD_Package.CSV_utility.CSV_Helper()
-CSV.organise_data()
-CSV.split_data_by_turb([2, 3])
+from WD_Package import WD_config
+config = WD_config.config() 
+
+CSV.extract_turbine_data(config.data_path, 3, 10, 270, 4) 
