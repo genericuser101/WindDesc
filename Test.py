@@ -4,4 +4,6 @@ from WD_Package import WD_config
 config = WD_config.config()     
 #CSV.old_format_to_new("/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset.csv", "/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv")
 #CSV.organise_data()
+CSV.old_format_to_new("/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv","/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv")
 CSV.extract_turbine_data(config.data_path, 4, 10, 270, 4) 
+CSV.old_format_to_new("/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv","/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv")
