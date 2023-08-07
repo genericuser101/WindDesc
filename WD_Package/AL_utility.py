@@ -74,7 +74,8 @@ class AL_Helper():
                 self.info_log(f"Iteration {i}, zCFD simulation DONE.")
 
                 #Extract newly added data and throw in the desired data file.
-                self.CSV.extract_turbine_data(config.data_path, num_turb, windspd, local_sim_num)
+                self.CSV.extract_turbine_data(config.data_path, num_turb, windspd, winddir, local_sim_num)
+                self.CSV.old_format_to_new("/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv","/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv")
                 self.info_log(f"Iteration {i}, data extracted.")
 
                 local_sim_num += 1
@@ -85,7 +86,7 @@ class AL_Helper():
                 self.info_log(f"Iteration {i}, model retrained.")
 
             else:
-                self.info_log("The model is happy, finding a new configuration.")
+                self.info_log("Model confident, finding a new configuration.")
 
     def info_log(self, message):
         with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "w", newline='') as log_file:
