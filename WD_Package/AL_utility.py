@@ -50,7 +50,14 @@ class AL_Helper():
 
             #Generate coords + Train Model
             turbines, neigh = self.CFD.generate_locations()
-            trained_gp_model = self.GP.train_model(config.data_path)
+
+            #FIX THIS FIX THIS 
+                        #FIX THIS FIX THIS 
+            #FIX THIS FIX THIS 
+                        #FIX THIS FIX THIS 
+            #FIX THIS FIX THIS 
+
+            trained_gp_model = self.GP.train_model(os.path.dirname(config.data_path) +"/all_dataset.csv")
             refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
 
             #Check if there are major errors.
