@@ -67,7 +67,7 @@ class AL_Helper():
                 self.info_log(f"Iteration {i}, new turbines locations projected.")
 
                 #New simulation is run on the fed-forward coordinates.
-                self.CFD.simulate(turbines, local_sim_num)
+                self.CFD.simulate(turbines, local_sim_num, windspd, winddir)
                 self.info_log(f"Iteration {i}, zCFD simulation running.")
 
                 #Every 20 minutes check the existance of a file. 
