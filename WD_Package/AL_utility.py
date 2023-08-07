@@ -26,7 +26,7 @@ class AL_Helper():
         #Some formalities before we get to the best part
         self.GP = GP_utility.GP_Helper()
         self.TU = GP_utility.Turbine_Helper()
-        self.CFD = CFD_utility.CFD_Helper()
+        self.CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
         self.CSV = CSV_utility.CSV_Helper()
         self.log_file_name = input("Log File Name: ")
     
@@ -71,7 +71,6 @@ class AL_Helper():
                     except:
                         pass
                     time.sleep(1200)
-                
                 self.info_log(f"Iteration {i}, zCFD simulation DONE.")
 
                 #Extract newly added data and throw in the desired data file.
