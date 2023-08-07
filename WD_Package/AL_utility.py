@@ -35,7 +35,7 @@ class AL_Helper():
         local_sim_num = self.CFD.last_local_sim(config.simulations_path)
         local_sim_num += 1
         
-        #------------------------------------TRAINING FORK-----------------------------------------#
+        #---------------------------------------TRAINING FORK-------------------------------------------#
         try:
             if method == "simple":
                 encoder = simple_Encoder()
@@ -44,9 +44,8 @@ class AL_Helper():
         except ValueError:
             print("Training method not recognised. Check github for currently supported.")
 
-        #------------------------------------ITERATIVE LOOP----------------------------------------#
+        #---------------------------------------ITERATIVE LOOP------------------------------------------#
         for i in range(num_iter):
-
             self.info_log(f"Active learning iteration: {i}, started using the {method} encoder.")
 
             #Generate coords + Train Model
@@ -57,24 +56,34 @@ class AL_Helper():
             #Check if there are major errors.
             if any(refstdev) > abs_tol:
                 
-                encoder.project(refwind, refstdev, num_turb, turbines)
+                turbines = encoder.project(refwind, refstdev, num_turb, turbines)
+                self.info_log(f"Iteration {i}, new turbines locations projected.")
 
                 #New simulation is run on the fed-forward coordinates.
                 self.CFD.simulate(turbines, local_sim_num)
-                
+                self.info_log(f"Iteration {i}, zCFD simulation running.")
+
                 #Every 20 minutes check the existance of a file. 
                 simFlag = False
                 while simFlag == False:
-                    simFlag = self.CFD.is_sim_done(local_sim_num)
+                    try:
+                        simFlag = self.CFD.is_sim_done(local_sim_num)
+                    except:
+                        pass
                     time.sleep(1200)
+                
+                self.info_log(f"Iteration {i}, zCFD simulation DONE.")
 
                 #Extract newly added data and throw in the desired data file.
                 self.CSV.extract_turbine_data(config.data_path, num_turb, windspd, local_sim_num)
+                self.info_log(f"Iteration {i}, data extracted.")
+
                 local_sim_num += 1
 
                 #Retraing the model and see if happy now
                 trained_gp_model = self.GP.train_model(config.data_path)
                 refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
+                self.info_log(f"Iteration {i}, model retrained.")
 
             else:
                 self.info_log("The model is happy, finding a new configuration.")
