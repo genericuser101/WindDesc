@@ -28,7 +28,7 @@ class AL_Helper():
         self.TU = GP_utility.Turbine_Helper()
         self.CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
         self.CSV = CSV_utility.CSV_Helper()
-        self.log_file_name = input("Log File Name: ")
+        self.log_file_name = str(input("Log File Name: "))
     
     def rock_and_roll(self, num_iter, num_turb, fine_tol, abs_tol, method, windspd, winddir):  
         
