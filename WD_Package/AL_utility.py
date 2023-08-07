@@ -32,7 +32,7 @@ class AL_Helper():
     
     def rock_and_roll(self, num_iter, num_turb, fine_tol, abs_tol, method, windspd, winddir):  
         
-        local_sim_num = self.CFD.last_local_sim(config.simulations_path)
+        local_sim_num = int(self.CFD.last_local_sim(config.simulations_path))
         local_sim_num += 1
         
         #---------------------------------------TRAINING FORK-------------------------------------------#
