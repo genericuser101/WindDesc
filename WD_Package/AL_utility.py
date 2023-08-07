@@ -96,7 +96,7 @@ class AL_Helper():
                 self.info_log("Model confident, finding a new configuration.")
 
     def info_log(self, message):
-        with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "w", newline='') as log_file:
+        with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "a", newline='') as log_file:
             log_file.write(str(datetime.datetime.now()) +":  "+str(message)+ "\n")
 
 
