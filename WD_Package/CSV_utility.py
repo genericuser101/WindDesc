@@ -28,6 +28,17 @@ class CSV_Helper():
     #Written by Dr. Brommer and Jingjing, updated by Stef
     def extract_turbine_data(self, filename, num_turbs, windspeed, winddir, sim_num):
         
+        #How many sims of the type.
+        global_sim_num = self.get_last_sim(filename, num_turbs)
+    
+        try:
+            global_sim_num = str(global_sim_num).zfill(4)
+        except ValueError:
+            print("Oop at 10k sims, tell Stef to change code.")
+
+        #-------------------------------NEW NAMING FORMAT------------------------------------
+        simname=global_sim_num+"_"+str(windspeed)+"_"+str(winddir)+"_"+str(num_turbs)
+
         #This gets us the local directory.
         simulation_directory=config.simulations_path+"/"+ str(sim_num).zfill(4)
         coordinate_file=simulation_directory+"/xy_turbine.txt"
@@ -42,25 +53,12 @@ class CSV_Helper():
         for filename_local in os.listdir(simulation_directory):
             if filename_local.endswith('.csv'):  # Only consider CSV files
                 print(filename_local)
-                df=pd.read_csv(config.simulations_path +"/"+filename_local, sep=' ')
+                df=pd.read_csv(config.simulations_path+"/"+str(sim_num).zfill(4)+"/"+filename_local, sep=' ')
                 df=df.tail(1) # Last line is the final result
                 for i in range(0,num_turbs):
                     uref='T00%d_uref' %(i)
                     cfd_data[i]=df[uref].iloc[-1]
                 print(cfd_data)
-
-        #How many sims of the type.
-        global_sim_num = self.get_last_sim(filename, num_turbs)
-        global_sim_num = str(global_sim_num)
-
-        #Finally the string is in a format such as 000X or 0XXX, its zfill
-        try:
-            global_sim_num = global_sim_num.zfill(4)
-        except ValueError:
-            print("Oop at 10k sims, tell Stef to change code.")
-
-        #-------------------------------NEW NAMING FORMAT------------------------------------
-        simname=global_sim_num+"_"+str(windspeed)+"_"+str(winddir)+"_"+str(num_turbs)
     
         dataset=pd.DataFrame()
         for i in range(num_turbs):
