@@ -66,7 +66,7 @@ class CSV_Helper():
         for i in range(num_turbs):
             turb_data=pd.DataFrame(
                 [[pos[1].iloc[i]+2000, pos[2].iloc[i], cfd_data[i], num_turbs, simname,   i]], 
-                columns=["X_coord",    "Y_coord",     "Ref_wind", "Num_tot_turb", "ID", "Turb_num"])
+                columns=["X_coord",  "Y_coord",  "Ref_wind", "Num_tot_turb", "ID", "Turb_num"])
         #        [[pos[1].iloc[i]+2000,pos[2].iloc[i],cfd_data[i],windspeed,i,numturb, simname]], 
         #        columns=["x_coord", "y_coord", "ref_wind_speed","wind_speed" , "turb_num","num_tot_turb", "ID"])
             dataset = pd.concat([dataset, turb_data])
