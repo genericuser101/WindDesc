@@ -14,4 +14,4 @@ import WD_Package.CFD_utility
 #CSV.old_format_to_new("/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv","/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv")
 
 BigAL = WD_Package.AL_utility.AL_Helper()
-BigAL.rock_and_roll(1, 4, 0.01, 0.01, "simple", 10, 270)
+BigAL.rock_and_roll(4, 4, 0.05, 0.05, "simple", 10, 270)

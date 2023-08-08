@@ -28,7 +28,7 @@ class AL_Helper():
         self.TU = GP_utility.Turbine_Helper()
         self.CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
         self.CSV = CSV_utility.CSV_Helper()
-        self.log_file_name = str(input("Log File Name: "))
+        self.log_file_name = "BigAL_2_test"
     
     def rock_and_roll(self, num_iter, num_turb, fine_tol, abs_tol, method, windspd, winddir):  
         
@@ -88,12 +88,12 @@ class AL_Helper():
                 local_sim_num += 1
 
                 #Retraing the model and see if happy now
-                trained_gp_model = self.GP.train_model(config.data_path)
-                refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
+                #trained_gp_model = self.GP.train_model(config.data_path)
+                #refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
                 self.info_log(f"Iteration {i}, model retrained.")
 
             else:
-                self.info_log("Model confident, finding a new configuration.")
+                self.info_log(f"Iteration {i} model is confident, finding a new configuration.")
 
     def info_log(self, message):
         with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "a", newline='') as log_file:
