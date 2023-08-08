@@ -74,7 +74,9 @@ class AL_Helper():
                         simFlag = self.CFD.is_sim_done(local_sim_num)
                     except:
                         pass
+                    self.info_log(f"Iteration {i}, zCFD still running.")
                     time.sleep(1200)
+                    
                 self.info_log(f"Iteration {i}, zCFD simulation DONE.")
 
                 #Extract newly added data and throw in the desired data file.
