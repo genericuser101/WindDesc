@@ -5,6 +5,7 @@
 #Call me Thanos the way I collect these utility files.
 import os
 import math
+from typing import Any
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -52,10 +53,6 @@ class AL_Helper():
             turbines, neigh = self.CFD.generate_locations()
 
             #FIX THIS FIX THIS 
-                        #FIX THIS FIX THIS 
-            #FIX THIS FIX THIS 
-                        #FIX THIS FIX THIS 
-            #FIX THIS FIX THIS 
 
             trained_gp_model = self.GP.train_model(os.path.dirname(config.data_path) +"/all_dataset.csv")
             refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
@@ -99,7 +96,7 @@ class AL_Helper():
         with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "a", newline='') as log_file:
             log_file.write(str(datetime.datetime.now()) +":  "+str(message)+ "\n")
 
-
+#------------------------------------------------------------------------------------------------------POSITIONAL ENCODERS------------------------------------------------------------------------------------------------------------------#
 class simple_Encoder():
     def __init__(self) -> None:
         pass
@@ -107,7 +104,6 @@ class simple_Encoder():
     def project(self, refwind, refstdev, num_turb, positions):
         return positions
         
-
 class zhikh_Encoder():
     def __init__(self, fine_tol, abs_tol) -> None:
 
@@ -146,7 +142,6 @@ class zhikh_Encoder():
     
     def get_X_closest(self, X, point, relevant_dataset, turb_num):
         closest_array = []
-
         with open(relevant_dataset, 'r', newline='') as datafile:
                 csv_reader = csv.reader(datafile)
                 header = next(csv_reader)
@@ -157,8 +152,11 @@ class zhikh_Encoder():
                         for point in closest_array:
                             pass
 
-
     def distance_to_point(self, point1, point2):
         x1, y1 = point1
         x2, y2 = point2
         return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
+    
+class bayes_Encoder():
+    def __init__(self) -> None:
+        pass
