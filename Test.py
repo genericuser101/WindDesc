@@ -6,8 +6,7 @@ from WD_Package import CFD_utility
 
 CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
 BigAL = AL_utility.AL_Helper()
-BigAL.rock_and_roll(4, 4, 0.05, 0.05, "simple", 10, 270)
 
 turbines, neigh = CFD.generate_locations()
 
-BigAL.info_log(turbines)
+BigAL.info_log(turbines )
