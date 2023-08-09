@@ -23,13 +23,13 @@ from WD_Package import CSV_utility
 
 
 class AL_Helper():
-    def __init__(self) -> None:
+    def __init__(self, filelogname):
         #Some formalities before we get to the best part
         self.GP = GP_utility.GP_Helper()
         self.TU = GP_utility.Turbine_Helper()
         self.CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
         self.CSV = CSV_utility.CSV_Helper()
-        self.log_file_name = "BigAL_3_test"
+        self.log_file_name = filelogname
     
     def rock_and_roll(self, num_iter, num_turb, fine_tol, abs_tol, method, windspd, winddir):  
         
