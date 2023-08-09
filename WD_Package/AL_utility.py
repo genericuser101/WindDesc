@@ -61,7 +61,7 @@ class AL_Helper():
             if any(refstdev) > abs_tol:
                 
                 turbines = encoder.project(refwind, refstdev, num_turb, turbines)
-                self.info_log(f"Iteration {i}, new turbines locations projected.")
+                self.info_log(f"Iteration {i}, new turbines locations projected. \n {turbines}")
 
                 #New simulation is run on the fed-forward coordinates.
                 self.CFD.simulate(turbines, local_sim_num, windspd, winddir)
@@ -69,11 +69,9 @@ class AL_Helper():
 
                 #Every 20 minutes check the existance of a file. 
                 simFlag = False
+
                 while simFlag == False:
-                    try:
-                        simFlag = self.CFD.is_sim_done(local_sim_num)
-                    except:
-                        pass
+                    simFlag = self.CFD.is_sim_done(local_sim_num, windspd, winddir)
                     self.info_log(f"Iteration {i}, zCFD still running.")
                     time.sleep(1200)
                     
