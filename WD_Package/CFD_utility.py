@@ -258,7 +258,7 @@ class CFD_Helper():
         #First build the filepath
         zCFDpath =  "turbine_" + str(winddir) + "p00_" + str(windspd) + "p00"
 
-        filepath = config.simulations_path + str(sim_num)+ "/" + zCFDpath + "_P14_OUTPUT/" + "LOGGING/" + zCFDpath + ".0.log"
+        filepath = config.simulations_path + "/" + str(sim_num).zfill(4)+ "/" + zCFDpath + "_P14_OUTPUT/" + "LOGGING/" + zCFDpath + ".0.log"
 
         with open(filepath, "rb") as file:
             try:
