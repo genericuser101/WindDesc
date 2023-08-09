@@ -9,4 +9,4 @@ BigAL = AL_utility.AL_Helper()
 
 turbines, neigh = CFD.generate_locations()
 
-BigAL.info_log(turbines )
+BigAL.info_log(f"New Configuration: \n {turbines}" )
