@@ -94,7 +94,9 @@ class AL_Helper():
 
     def info_log(self, message):
         with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "a", newline='') as log_file:
-            log_file.write(str(datetime.datetime.now()) +":  "+str(message)+ "\n")
+            current_time = datetime.datetime.now()
+            current_time_without_milliseconds = current_time.replace(microsecond=0)
+            log_file.write(str(current_time_without_milliseconds) +":  "+str(message)+ "\n")
 
 #------------------------------------------------------------------------------------------------------POSITIONAL ENCODERS------------------------------------------------------------------------------------------------------------------#
 class simple_Encoder():
