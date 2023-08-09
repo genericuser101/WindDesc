@@ -1,4 +1,4 @@
-import WD_Package.CSV_utility
+from WD_Package import CSV_utility 
 from WD_Package import AL_utility
 from WD_Package import WD_config
 config = WD_config.config()     
@@ -9,4 +9,5 @@ BigAL = AL_utility.AL_Helper()
 
 turbines, neigh = CFD.generate_locations()
 
-BigAL.info_log(f"New Configuration: \n {turbines}" )
+#BigAL.info_log(f"New Configuration: \n {turbines}" )
+
