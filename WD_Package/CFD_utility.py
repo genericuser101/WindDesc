@@ -256,7 +256,7 @@ class CFD_Helper():
     def is_sim_done(self, sim_num, windspd, winddir):
         
         #First build the filepath
-        zCFDpath =  "turbine_" + str(winddir) + "p00_" + str(windspd) + "p00"
+        zCFDpath =  "sim_" + str(winddir) + "p00_" + str(windspd) + "p00"
 
         filepath = config.simulations_path + "/" + str(sim_num).zfill(4)+ "/" + zCFDpath + "_P14_OUTPUT/" + "LOGGING/" + zCFDpath + ".0.log"
 
