@@ -29,7 +29,7 @@ class AL_Helper():
         self.TU = GP_utility.Turbine_Helper()
         self.CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
         self.CSV = CSV_utility.CSV_Helper()
-        self.log_file_name = "BigAL_2_test"
+        self.log_file_name = "BigAL_3_test"
     
     def rock_and_roll(self, num_iter, num_turb, fine_tol, abs_tol, method, windspd, winddir):  
         
