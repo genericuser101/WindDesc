@@ -47,10 +47,10 @@ class AL_Helper():
 
         #---------------------------------------ITERATIVE LOOP------------------------------------------#
         for i in range(num_iter):
-            self.info_log(f"Active learning iteration: {i}, started using the {method} encoder.")
 
             #Generate coords + Train Model
             turbines, neigh = self.CFD.generate_locations()
+            self.info_log(f"Active learning iteration: {i}, started using the {method} encoder. Using: \n {turbines}")
 
             #FIX THIS FIX THIS 
 
@@ -59,7 +59,7 @@ class AL_Helper():
 
             #Check if there are major errors.
             if any(refstdev) > abs_tol:
-                
+
                 turbines = encoder.project(refwind, refstdev, num_turb, turbines)
                 self.info_log(f"Iteration {i}, new turbines locations projected. \n {turbines}")
 
@@ -90,7 +90,7 @@ class AL_Helper():
                 self.info_log(f"Iteration {i}, model retrained.")
 
             else:
-                self.info_log(f"Iteration {i} model is confident, finding a new configuration.")
+                self.info_log(f"Iteration {i} model is confident, finding a new configuration. Confidence: \n {refstdev}")
 
     def info_log(self, message):
         with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "a", newline='') as log_file:
