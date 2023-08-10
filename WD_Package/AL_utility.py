@@ -71,9 +71,9 @@ class AL_Helper():
                 simFlag = False
 
                 while simFlag == False:
+                    time.sleep(1200)
                     simFlag = self.CFD.is_sim_done(local_sim_num, windspd, winddir)
                     self.info_log(f"Iteration {i}, zCFD still running.")
-                    time.sleep(1200)
                     
                 self.info_log(f"Iteration {i}, zCFD simulation DONE.")
 
