@@ -162,3 +162,4 @@ class zhikh_Encoder():
 class bayes_Encoder():
     def __init__(self) -> None:
         pass
+
