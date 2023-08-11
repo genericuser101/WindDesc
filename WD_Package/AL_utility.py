@@ -50,7 +50,7 @@ class AL_Helper():
 
             #Generate coords + Train Model
             turbines, neigh = self.CFD.generate_locations()
-            self.info_log(f"Active learning iteration: {i}, started using the {method} encoder. Using: \n {turbines}")
+            self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Started using the {method} encoder. Using: \n {turbines}")
 
             #FIX THIS FIX THIS 
 
@@ -61,11 +61,11 @@ class AL_Helper():
             if any(refstdev) > abs_tol:
 
                 turbines = encoder.project(refwind, refstdev, num_turb, turbines)
-                self.info_log(f"Iteration {i}, new turbines locations projected. \n {turbines}")
+                self.info_log(f"Simulation: {local_sim_num}, AL: {i}. New turbines locations projected. \n {turbines}")
 
                 #New simulation is run on the fed-forward coordinates.
                 self.CFD.simulate(turbines, local_sim_num, windspd, winddir)
-                self.info_log(f"Iteration {i}, zCFD simulation running.")
+                self.info_log(f"Simulation: {local_sim_num}, AL: {i}. zCFD simulation running.")
 
                 #Every 20 minutes check the existance of a file. 
                 simFlag = False
@@ -73,24 +73,24 @@ class AL_Helper():
                 while simFlag == False:
                     time.sleep(1200)
                     simFlag = self.CFD.is_sim_done(local_sim_num, windspd, winddir)
-                    self.info_log(f"Iteration {i}, zCFD still running.")
+                    self.info_log(f"Simulation: {local_sim_num}, AL: {i}. zCFD still running.")
                     
-                self.info_log(f"Iteration {i}, zCFD simulation DONE.")
+                self.info_log(f"Simulation: {local_sim_num}, AL: {i}. zCFD simulation DONE.")
 
                 #Extract newly added data and throw in the desired data file.
                 self.CSV.extract_turbine_data(config.data_path, num_turb, windspd, winddir, local_sim_num)
                 self.CSV.old_format_to_new("/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv","/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv")
-                self.info_log(f"Iteration {i}, data extracted.")
+                self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Data extracted.")
 
                 local_sim_num += 1
 
                 #Retraing the model and see if happy now
                 #trained_gp_model = self.GP.train_model(config.data_path)
                 #refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
-                self.info_log(f"Iteration {i}, model retrained.")
+                self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Model retrained.")
 
             else:
-                self.info_log(f"Iteration {i} model is confident, finding a new configuration. Confidence: \n {refstdev}")
+                self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Model is confident, finding a new configuration. Confidence: \n {refstdev}")
 
     def info_log(self, message):
         with open(os.path.dirname(config.data_path)+"/"+self.log_file_name+".txt", "a", newline='') as log_file:
