@@ -142,21 +142,20 @@ class CSV_Helper():
         array_to_prepend = []
         count = 0
         for i in range(len(csv_df)):
-            if count > 1:
-                array_to_prepend.append(int(count)-2)
+            if count > -1:
+                array_to_prepend.append(int(count))
             else:
                 array_to_prepend.append("")
             count+= 1
         print(array_to_prepend)
-       # Combine the array and the existing CSV data
-        combined_data = [array_to_prepend] + csv_df.values.tolist()
+       # Create a DataFrame from the 1D array
+        array_df = pd.DataFrame(array_to_prepend, columns=['NewColumn'])
 
-        # Write the combined data back to the CSV file
+        # Concatenate the DataFrames along the columns
+        concatenated_df = pd.concat([array_df, csv_df], axis=1)
+        # Write the concatenated DataFrame to a new CSV file
         output_csv_filename = old_format_filename
-        with open(output_csv_filename, 'w') as f:
-            for row in combined_data:
-                f.write(','.join(map(str, row)) + '\n')
-
+        concatenated_df.to_csv(output_csv_filename, index=False)
 
     def split_data_by_turb(self, desired_turb_array):
 
