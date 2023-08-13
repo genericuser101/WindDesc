@@ -117,9 +117,9 @@ class CSV_Helper():
         #Return sorted array.
         return array
 
-    def old_format_to_new(self, old_filename, new_filename):
-        input_file = old_filename
-        output_file = new_filename
+    def old_format_to_new(self, old_format_filename, new_format_filename):
+        input_file = old_format_filename
+        output_file = new_format_filename
 
         with open(input_file, 'r') as file:
             csv_reader = csv.reader(file)
@@ -132,12 +132,12 @@ class CSV_Helper():
         print(f"Modified CSV file saved as '{output_file}'.")
 
 
-    def new_format_to_old(self, old_filename, new_filename):
-        input_file = new_filename
-        output_file = old_filename
+    def new_format_to_old(self, old_format_filename, new_format_filename):
+        input_file = new_format_filename
+        output_file = old_format_filename
 
-        with open(input_file, 'w', newline=''), \
-             open(output_file, 'r', newline=''):
+        with open(input_file, 'r', newline=''), \
+             open(output_file, 'w', newline=''):
 
             # Create CSV reader and writer objects
             csv_reader = csv.reader(input_file)
@@ -146,9 +146,9 @@ class CSV_Helper():
             count = 0
             for row in csv_reader:
                 if count > 1:
-                    row = [count-2] + row
+                    csv_writer.writerowr([count-2] + row)
                 else:
-                    row = [""] + row
+                    csv_writer.writerow([""] + row)
 
         print(f"Modified CSV file saved as '{output_file}'.")
 
