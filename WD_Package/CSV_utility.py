@@ -136,8 +136,8 @@ class CSV_Helper():
         input_file = new_filename
         output_file = old_filename
 
-        with open(input_file, 'r', newline=''), \
-             open(output_file, 'w', newline=''):
+        with open(input_file, 'w', newline=''), \
+             open(output_file, 'r', newline=''):
 
             # Create CSV reader and writer objects
             csv_reader = csv.reader(input_file)
@@ -149,7 +149,7 @@ class CSV_Helper():
                     row = [count-2] + row
                 else:
                     row = [""] + row
-                    
+
         print(f"Modified CSV file saved as '{output_file}'.")
 
     def split_data_by_turb(self, desired_turb_array):
