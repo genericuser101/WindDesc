@@ -143,7 +143,7 @@ class CSV_Helper():
         count = 0
         for i in range(len(csv_df)):
             if count > 1:
-                array_to_prepend.append(int(count))
+                array_to_prepend.append(int(count)-2)
             else:
                 array_to_prepend.append("")
             count+= 1
