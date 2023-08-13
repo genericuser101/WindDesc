@@ -146,7 +146,7 @@ class CSV_Helper():
             count = 0
             for row in csv_reader:
                 if count > 1:
-                    csv_writer.writerowr([count-2] + row)
+                    csv_writer.writerow([count-2] + row)
                 else:
                     csv_writer.writerow([""] + row)
 
