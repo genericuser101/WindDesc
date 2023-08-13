@@ -143,6 +143,7 @@ class CSV_Helper():
         count = 0
         for i in range(len(csv_df)):
             array_to_prepend.append(count)
+            count+= 1
         print(array_to_prepend)
         array_df = pd.DataFrame(array_to_prepend, columns=[''])  # Use a suitable column header
 
