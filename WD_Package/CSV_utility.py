@@ -136,8 +136,8 @@ class CSV_Helper():
         input_file = new_format_filename
         output_file = old_format_filename
 
-        with open(input_file, 'r', newline=''), \
-             open(output_file, 'w', newline=''):
+        with open(input_file, 'r', newline='') as input_file, \
+             open(output_file, 'w', newline='') as output_file:
 
             # Create CSV reader and writer objects
             csv_reader = csv.reader(input_file)
