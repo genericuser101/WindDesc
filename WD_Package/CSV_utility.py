@@ -142,11 +142,8 @@ class CSV_Helper():
         array_to_prepend = []
         count = 0
         for i in range(len(csv_df)):
-            if count > 1:
-                array_to_prepend.append(count)
-            else:
-                array_to_prepend.append("")
-
+            array_to_prepend.append(count)
+        print(array_to_prepend)
         array_df = pd.DataFrame(array_to_prepend, columns=[''])  # Use a suitable column header
 
         # Concatenate the DataFrames
