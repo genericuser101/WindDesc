@@ -147,7 +147,7 @@ class CSV_Helper():
             else:
                 array_to_prepend.append("")
 
-        array_df = pd.DataFrame(array_to_prepend)  # Use a suitable column header
+        array_df = pd.DataFrame(array_to_prepend, columns=[''])  # Use a suitable column header
 
         # Concatenate the DataFrames
         concatenated_df = pd.concat([array_df, csv_df], ignore_index=True)
@@ -155,7 +155,7 @@ class CSV_Helper():
         # Write the concatenated DataFrame to a new CSV file
         output_csv_filename = old_format_filename
         concatenated_df.to_csv(output_csv_filename, index=False)
-
+        
         print("CSV file with array concatenated has been created.")
 
     def split_data_by_turb(self, desired_turb_array):
