@@ -50,12 +50,10 @@ class AL_Helper():
 
             #Generate coords + Train Model
             turbines, neigh = self.CFD.generate_locations()
-            self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Started using the {method} encoder. Using: \n {turbines}")
-
             #FIX THIS FIX THIS 
-
             trained_gp_model = self.GP.train_model(os.path.dirname(config.data_path) +"/all_dataset.csv")
             refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
+            self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Started using the {method} encoder. Using: \n {turbines} \n {refwind} \n {refstdev}")
 
             #Check if there are major errors.
             if any(refstdev) > abs_tol:
@@ -79,15 +77,15 @@ class AL_Helper():
 
                 #Extract newly added data and throw in the desired data file.
                 self.CSV.extract_turbine_data(config.data_path, num_turb, windspd, winddir, local_sim_num)
-                self.CSV.old_format_to_new("/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv","/home/eng/esugxk/storage/WindDesc/WindDesc/data/all_dataset_SZ.csv")
+                self.CSV.old_format_to_new(config.data_path,config.data_path)
                 self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Data extracted.")
-
-                local_sim_num += 1
 
                 #Retraing the model and see if happy now
                 #trained_gp_model = self.GP.train_model(config.data_path)
                 #refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
                 self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Model retrained.")
+
+                local_sim_num += 1
 
             else:
                 self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Model is confident, finding a new configuration. Confidence: \n {refstdev}")

@@ -5,10 +5,10 @@ config = WD_config.config()
 from WD_Package import CFD_utility 
 
 CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
-BigAL = AL_utility.AL_Helper("test")
 
 turbines, neigh = CFD.generate_locations()
 
 #BigAL.info_log(f"New Configuration: \n {turbines}" )
 
-print(CFD.is_sim_done(10, 10, 270))
+CSV = CSV_utility.CSV_Helper()
+print(CSV.new_format_to_old(config.data_path, config.data_path))
