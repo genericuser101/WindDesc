@@ -133,24 +133,30 @@ class CSV_Helper():
 
 
     def new_format_to_old(self, old_format_filename, new_format_filename):
-        input_file = new_format_filename
-        output_file = old_format_filename
 
-        with open(input_file, 'r', newline='') as input_file, \
-             open(output_file, 'w', newline='') as output_file:
+        # Read the CSV file into a DataFrame
+        csv_filename = new_format_filename
+        csv_df = pd.read_csv(csv_filename)
 
-            # Create CSV reader and writer objects
-            csv_reader = csv.reader(input_file)
-            csv_writer = csv.writer(output_file)
+        # Create a DataFrame from a 1D array
+        array_to_prepend = []
+        count = 0
+        for i in range(len(csv_df)):
+            if count > 1:
+                array_to_prepend.append(count)
+            else:
+                array_to_prepend.append("")
 
-            count = 0
-            for row in csv_reader:
-                if count > 1:
-                    csv_writer.writerow([count-2] + row)
-                else:
-                    csv_writer.writerow([""] + row)
+        array_df = pd.DataFrame(array_to_prepend)  # Use a suitable column header
 
-        print(f"Modified CSV file saved as '{output_file}'.")
+        # Concatenate the DataFrames
+        concatenated_df = pd.concat([array_df, csv_df], ignore_index=True)
+
+        # Write the concatenated DataFrame to a new CSV file
+        output_csv_filename = old_format_filename
+        concatenated_df.to_csv(output_csv_filename, index=False)
+
+        print("CSV file with array concatenated has been created.")
 
     def split_data_by_turb(self, desired_turb_array):
 
