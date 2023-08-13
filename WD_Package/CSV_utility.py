@@ -149,7 +149,7 @@ class CSV_Helper():
             count+= 1
         print(array_to_prepend)
        # Create a DataFrame from the 1D array
-        array_df = pd.DataFrame(array_to_prepend, columns=['NewColumn'])
+        array_df = pd.DataFrame(array_to_prepend, columns=[''])
 
         # Concatenate the DataFrames along the columns
         concatenated_df = pd.concat([array_df, csv_df], axis=1)
