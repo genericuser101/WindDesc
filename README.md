@@ -1,4 +1,3 @@
-# Descriptor-Based Surrogate Model of Wind Speeds in Offshore Wind Farms
 ![alt text](winddesclogo.png)
 
 ## Files:
