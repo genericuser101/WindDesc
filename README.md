@@ -1,4 +1,4 @@
-![alt text](winddesclogo.png)
+![alt text](Logo for URSS 2.png)
 
 ## Files:
 ### Data:
