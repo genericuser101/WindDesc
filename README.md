@@ -43,7 +43,6 @@
 ## Active Learning: 
 The active learning algorithm currently supports the following: 
   - Simple Parsing 
-  - Zhikharev Encoder
 
 ## FAQ:
 Q:
