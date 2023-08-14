@@ -1,4 +1,4 @@
-![alt text](Logo for URSS 2.png)
+![alt text](mainlogo.png)
 
 ## Files:
 ### Data:
