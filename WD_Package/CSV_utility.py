@@ -146,7 +146,6 @@ class CSV_Helper():
             else:
                 array_to_prepend.append("")
             count+= 1
-        print(array_to_prepend)
        # Create a DataFrame from the 1D array
         array_df = pd.DataFrame(array_to_prepend, columns=[''])
 
