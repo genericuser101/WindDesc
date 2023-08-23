@@ -51,7 +51,7 @@ class AL_Helper():
             #Generate coords + Train Model
             turbines, neigh = self.CFD.generate_locations()
             self.CSV.new_format_to_old(config.data_path, config.data_path)
-            trained_gp_model = self.GP.train_model(os.path.dirname(config.data_path) +"/all_dataset.csv")
+            trained_gp_model = self.GP.train_model(config.data_path)
             refwind, refstdev = self.GP.predict_model(trained_gp_model, turbines, num_turb)
             self.info_log(f"Simulation: {local_sim_num}, AL: {i}. Started using the {method} encoder. Using: \n {turbines} \n {refwind} \n {refstdev}")
             self.CSV.old_format_to_new(config.data_path, config.data_path)
