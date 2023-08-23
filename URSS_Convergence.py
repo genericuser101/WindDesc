@@ -32,7 +32,7 @@ print("Final Locations:")
 print(turbines)
 
 for i in range(0,26,1):
-    current_path = database + "/all_dataset_"+i+".csv"
+    current_path = database + "/all_dataset_"+str(i)+".csv"
     CSV.new_format_to_old(current_path, current_path)
     trained_gp_model = GP.train_model(current_path)
     refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
