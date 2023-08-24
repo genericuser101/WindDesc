@@ -52,6 +52,6 @@ for i in range(0,26,1):
 text_file = "URSS_log.txt"
 
 print("Stdev Array")
-print(certainty_array)           
+print(np.array(certainty_array))           
 
 
