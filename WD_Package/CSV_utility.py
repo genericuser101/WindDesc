@@ -22,7 +22,7 @@ from IPython.display import display
 GPy.plotting.change_plotting_library('matplotlib')
 
 class CSV_Helper():
-    def __init__(self) -> None:
+    def __init__(self):
         pass
     
     #Written by Dr. Brommer and Jingjing, updated by Stef
@@ -216,7 +216,7 @@ class CSV_Helper():
 
 
 class CSV_Data_Vis():
-    def __init__(self, filename) -> None:
+    def __init__(self, filename):
         self.filename = filename
 
         self.helper = CSV_Helper()

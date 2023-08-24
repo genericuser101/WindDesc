@@ -48,7 +48,7 @@ class Turbine_Helper():
         return fingerprints
 
 class GP_Helper():
-    def __init__(self) -> None:
+    def __init__(self):
         self.turbine_utility = Turbine_Helper()
 
     def train_model(self, filename):

@@ -110,7 +110,7 @@ class simple_Encoder():
         return positions
         
 class zhikh_Encoder():
-    def __init__(self, fine_tol, abs_tol) -> None:
+    def __init__(self, fine_tol, abs_tol):
 
         #------------------------Properties------------------------#
         self.fine_tol = fine_tol
