@@ -21,16 +21,14 @@ TU = GP_utility.Turbine_Helper()
 CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
 CSV = CSV_utility.CSV_Helper()
 
-turbines, neigh = CFD.generate_locations()
-
-#BigAL.info_log(f"New Configuration: \n {turbines}" )
-
 num_turb = 4
 
 database = os.path.dirname(config.data_path)
 current_path = str(database) + "/all_dataset_0.csv"
 print(current_path)
 for i in range(10):
+    turbines, neigh = CFD.generate_locations()
+
     CSV.new_format_to_old(current_path, current_path)
     trained_gp_model = GP.train_model(current_path)
     refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
@@ -39,7 +37,7 @@ for i in range(10):
     [refwind2, referr] = trained_gp_model.predict(fingerprint)
     CSV.old_format_to_new(current_path, current_path) 
     if largest_err > 0.5:
-        print("Found")
+        print("-----------------------------------------Found-----------------------------------------")
         print(turbines)
         break
 print(refwind)
