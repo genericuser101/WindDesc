@@ -18,7 +18,7 @@ from WD_Package import CSV_utility
 
 GP = GP_utility.GP_Helper()
 TU = GP_utility.Turbine_Helper()
-CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
+CFD = CFD_utility.CFD_Helper(179.00, 4000.0, 500.0, 4)
 CSV = CSV_utility.CSV_Helper()
  
 database = os.path.dirname(config.data_path)
