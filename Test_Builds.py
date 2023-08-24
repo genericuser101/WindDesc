@@ -17,7 +17,7 @@ num_turb = 4
 
 CSV = CSV_utility.CSV_Helper()
 database = os.path.dirname(config.data_path)
-current_path = database + "/all_dataset_0.csv"
+current_path = str(database) + "/all_dataset_0.csv"
 
 trained_gp_model = GP.train_model(current_path)
 refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
