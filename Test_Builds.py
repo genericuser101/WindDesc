@@ -27,12 +27,12 @@ turbines, neigh = CFD.generate_locations()
 
 num_turb = 4
 
-CSV = CSV_utility.CSV_Helper()
 database = os.path.dirname(config.data_path)
 current_path = str(database) + "/all_dataset_0.csv"
-
+CSV.new_format_to_old(current_path, current_path)
 trained_gp_model = GP.train_model(current_path)
 refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
+CSV.old_format_to_new(current_path, current_path)  
 print(refwind)
 print(refstdev)
 print("DONE")
