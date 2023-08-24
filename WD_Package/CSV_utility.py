@@ -129,8 +129,6 @@ class CSV_Helper():
             csv_writer = csv.writer(file)
             csv_writer.writerows(rows)
 
-        print(f"Modified CSV file saved as {output_file}.")
-
     def new_format_to_old(self, old_format_filename, new_format_filename):
 
         # Read the CSV file into a DataFrame
