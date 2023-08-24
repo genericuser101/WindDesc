@@ -24,7 +24,7 @@ CSV = CSV_utility.CSV_Helper()
 num_turb = 4
 
 database = os.path.dirname(config.data_path)
-current_path = str(database) + "/all_dataset_0.csv"
+current_path = str(database) + "/all_dataset_SZ.csv"
 print(current_path)
 for i in range(10):
     turbines, neigh = CFD.generate_locations()
