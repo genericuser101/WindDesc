@@ -27,7 +27,10 @@ certainty_array = []
 
 num_turb = 4 
 
-turbines, neigh = CFD.generate_locations()
+#turbines, neigh = CFD.generate_locations()
+
+turbines=np.array([[   0.   ,  0.        ],[ 794.36576595 ,  43.85822902], [ 449.31175435,  178.73675336], [2031.48005906 ,  71.47280391]])
+
 print("Final Locations:")
 print(turbines)
 
@@ -38,7 +41,9 @@ for i in range(0,26,1):
     trained_gp_model = GP.train_model(current_path)
     refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
     largest_err = max(refstdev)
-    
+    print("----------------LARGEST----------------")
+    print(largest_err)
+
     print("STDEV:")
     print(refstdev)
     certainty_array.append(largest_err)
