@@ -42,10 +42,7 @@ for i in range(0,26,1):
 
 text_file = "URSS_log.txt"
 
-with open(text_file, 'a') as file:
-    array_str = ' '.join(map(str, certainty_array))  
-    file.write("Turbines:" + '\n')
-    file.write(turbines + '\n')           
-    file.write(array_str + '\n')           
+print("Stdev Array")
+print(array_str)           
 
 
