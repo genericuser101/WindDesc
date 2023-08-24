@@ -44,7 +44,7 @@ for i in range(50):
     largest_err = max(refstdev)
     [refwind2, referr] = trained_gp_model.predict(fingerprint)
     CSV.old_format_to_new(current_path, current_path) 
-    if largest_err > 0.2:
+    if largest_err > 0.15:
         print("-----------------------------------------FOUND-----------------------------------------")
         print(turbines)
         break
