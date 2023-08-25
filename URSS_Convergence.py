@@ -27,11 +27,6 @@ certainty_array = []
 
 num_turb = 4 
 
-#Data 1
-#turbines=np.array([[0.0,0.0],[ 794.36576595, 43.85822902], [ 449.31175435,  178.73675336], [2031.48005906 ,  71.47280391]])
-
-#Data 2
-#turbines=np.array([[0.0,0.0],[ 694.36576595, -43.85822902], [ 449.31175435,  178.73675336], [1931.48005906 ,  71.47280391]])
 database = os.path.dirname(config.data_path)
 current_path = str(database) + "/all_dataset_0.csv"
 
