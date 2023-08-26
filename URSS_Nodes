@@ -29,7 +29,12 @@ data1 = np.array([[0.0,0.0],[ 794.36576595, 43.85822902], [ 449.31175435,  178.7
 
 data_array = np.array([data1, data2, data3, data4, data5])
 certainty_array = []
+stdev_arr = []
+refwind_arr = []
+
 num_turb = 4 
+database = os.path.dirname(config.data_path)
+
 
 for data in data_array:
     turbines = data
@@ -45,8 +50,20 @@ for data in data_array:
 
         print("STDEV:")
         print(refstdev)
+        print("REFWIND")
+        print(refwind)
         certainty_array.append(largest_err)
+        stdev_arr.append(refstdev)
+        refwind_arr.append(refwind)
+
         CSV.old_format_to_new(current_path, current_path)  
 
-    print("Stdev Array")
-    print(np.array(certainty_array))     
+    print("-----------------------------------------FULL DATA-----------------------------------------")
+    print(np.array(certainty_array))    
+    print(np.array(stdev_arr))    
+    print(np.array(refwind_arr))    
+
+    certainty_array = []
+    stdev_arr = []
+    refwind_arr = []
+
