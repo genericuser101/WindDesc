@@ -21,26 +21,21 @@ TU = GP_utility.Turbine_Helper()
 CFD = CFD_utility.CFD_Helper(279.00, 4000.0, 500.0, 4)
 CSV = CSV_utility.CSV_Helper()
 
-num_turb = 4
-
+num_turb = 4 
 database = os.path.dirname(config.data_path)
-current_path = str(database) + "/all_dataset_SZ.csv"
-print(current_path)
-for i in range(10):
-    turbines, neigh = CFD.generate_locations()
+current_path = config.data_path
 
-    CSV.new_format_to_old(current_path, current_path)
-    trained_gp_model = GP.train_model(current_path)
-    refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
-    fingerprint = TU.fingerprint(turbines, num_turb)
-    largest_err = max(refstdev)
-    [refwind2, referr] = trained_gp_model.predict(fingerprint)
-    CSV.old_format_to_new(current_path, current_path) 
-    if largest_err > 0.5:
-        print("-----------------------------------------Found-----------------------------------------")
-        print(turbines)
-        break
-print(refwind)
-print(refstdev)
-print(referr)
-print("DONE")
+local_csv_file = "data_.csv"
+turbines = np.array([[0.0,0.0],[ 794.36576595, 43.85822902], [ 449.31175435,  178.73675336], [2031.48005906 ,  71.47280391]])
+
+
+CSV.new_format_to_old(current_path, current_path)
+trained_gp_model = GP.train_model(current_path)
+refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
+largest_err = max(refstdev)
+tail_array = np.vstack((refwind, refstdev))
+df_row = pd.DataFrame([tail_array])
+existing_df = pd.read_csv(local_csv_file)
+combined_df = pd.concat([existing_df, df_row], ignore_index=True)
+combined_df.to_csv(local_csv_file, index=False)
+CSV.old_format_to_new(current_path, current_path)  
