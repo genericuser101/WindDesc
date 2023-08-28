@@ -45,6 +45,7 @@ if not os.path.exists(local_csv_file):
 
 existing_df = pd.read_csv(local_csv_file)
 df_row = pd.DataFrame(tail_array, columns=existing_df.columns)
+
 combined_df = existing_df.append(df_row, ignore_index=True)
 combined_df.to_csv(local_csv_file, index=False)
 CSV.old_format_to_new(current_path, current_path)  

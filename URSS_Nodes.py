@@ -49,15 +49,27 @@ for data in data_array:
         largest_err = max(refstdev)
         print("-----------------------------------------LARGEST-----------------------------------------")
         print(largest_err)
+
         certainty_array.append(largest_err)
         stdev_arr.append(refstdev)
         refwind_arr.append(refwind)
-        tail_array = np.concatenate((refwind, refstdev))
-        df_row = pd.DataFrame([tail_array])
+
+        tail_array = np.vstack((refwind, refstdev))
+        tail_array = tail_array.reshape(1, -1)
+
+        if not os.path.exists(local_csv_file):
+            # If the file doesn't exist, create it with headers
+            df = pd.DataFrame(columns=['Column1', 'Column2', 'Column3', 'Column4','Column5', 'Column6', 'Column7', 'Column8'])
+            df.to_csv(local_csv_file, index=False)
+
         existing_df = pd.read_csv(local_csv_file)
-        combined_df = pd.concat([existing_df, df_row], ignore_index=True)
+        df_row = pd.DataFrame(tail_array, columns=existing_df.columns)
+
+        combined_df = existing_df.append(df_row, ignore_index=True)
         combined_df.to_csv(local_csv_file, index=False)
+
         CSV.old_format_to_new(current_path, current_path)  
+        
     dataval += 1
 
     print("-----------------------------------------FULL DATA-----------------------------------------")
