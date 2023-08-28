@@ -35,9 +35,11 @@ refwind_arr = []
 num_turb = 4 
 database = os.path.dirname(config.data_path)
 
+dataval = 1
 
 for data in data_array:
     turbines = data
+    local_csv_file = "data_"+str(dataval)+".csv"
     for i in range(0,26,1):
         current_path = database + "/all_dataset_"+str(i)+".csv"
         CSV.new_format_to_old(current_path, current_path)
@@ -47,16 +49,16 @@ for data in data_array:
         largest_err = max(refstdev)
         print("-----------------------------------------LARGEST-----------------------------------------")
         print(largest_err)
-
-        print("STDEV:")
-        print(refstdev)
-        print("REFWIND")
-        print(refwind)
         certainty_array.append(largest_err)
         stdev_arr.append(refstdev)
         refwind_arr.append(refwind)
-
+        tail_array = np.concatenate((refwind, refstdev))
+        df_row = pd.DataFrame([tail_array])
+        existing_df = pd.read_csv(local_csv_file)
+        combined_df = pd.concat([existing_df, df_row], ignore_index=True)
+        combined_df.to_csv(local_csv_file, index=False)
         CSV.old_format_to_new(current_path, current_path)  
+    dataval += 1
 
     print("-----------------------------------------FULL DATA-----------------------------------------")
     print(np.array(certainty_array))    
