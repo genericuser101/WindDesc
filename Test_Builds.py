@@ -38,8 +38,12 @@ print(tail_array)
 print(np.shape(tail_array))
 tail_array = tail_array.reshape(1, -1)
 df_row = pd.DataFrame(tail_array)
-with open(local_csv_file, 'w') as file:
-    pass 
+
+if not os.path.exists(local_csv_file):
+    # If the file doesn't exist, create it with headers
+    df = pd.DataFrame(columns=['Column1', 'Column2', 'Column3', 'Column4','Column5', 'Column6', 'Column7', 'Column8'])
+    df.to_csv(local_csv_file, index=False)
+
 existing_df = pd.read_csv(local_csv_file)
 combined_df = pd.concat([existing_df, df_row], ignore_index=True)
 combined_df.to_csv(local_csv_file, index=False)
