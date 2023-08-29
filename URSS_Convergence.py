@@ -46,25 +46,3 @@ for i in range(50):
 
 print("Final Locations:")
 print(turbines)
-
-for i in range(0,26,1):
-    current_path = database + "/all_dataset_"+str(i)+".csv"
-    CSV.new_format_to_old(current_path, current_path)
-
-    trained_gp_model = GP.train_model(current_path)
-    refwind, refstdev = GP.predict_model(trained_gp_model, turbines, num_turb)
-    largest_err = max(refstdev)
-    print("-----------------------------------------LARGEST-----------------------------------------")
-    print(largest_err)
-
-    print("STDEV:")
-    print(refstdev)
-    certainty_array.append(largest_err)
-    CSV.old_format_to_new(current_path, current_path)  
-
-text_file = "URSS_log.txt"
-
-print("Stdev Array")
-print(np.array(certainty_array))           
-
-
