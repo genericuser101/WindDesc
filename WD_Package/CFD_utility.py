@@ -59,7 +59,7 @@ class CFD_Helper():
                 break
             continue
 
-        return turbines, neigh 
+        return turbines, neigh
 
     def simulate(self, turbines, sim_number, windspd, winddir):
         positions = np.array(turbines)
